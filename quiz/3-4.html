@@ -2,11 +2,33 @@
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans)}button,a{font:inherit}a{color:inherit}button{cursor:pointer}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}button:disabled{cursor:default;opacity:.45}[hidden]{display:none!important}.wrap{max-width:1220px;padding:0 clamp(16px,5vw,64px);margin:auto}header,footer,.line,.actions,.signature{display:flex;align-items:center;justify-content:space-between;gap:12px}header{border-bottom:1px solid var(--ink);height:72px}.brand{font:700 22px var(--serif);letter-spacing:.1em;text-decoration:none;display:flex;align-items:center;gap:10px}.mark{display:inline-grid;place-items:center;background:var(--accent);color:white;font:16px var(--serif);width:31px;height:32px;border:3px double var(--paper);border-radius:3px}.small,footer,.crumb,.sectiontag,.hint{font-size:13px;color:var(--muted)}.sectiontag{color:var(--accent);letter-spacing:.18em;font-weight:bold}.cover,.catalogCover{position:relative;isolation:isolate;overflow:hidden;margin:24px 0;background:var(--pale);border:1px solid var(--line);display:grid;grid-template-columns:1.15fr 1fr;align-items:stretch}.coverText{padding:clamp(27px,5vw,72px)}h1,h2,h3,h4{font-family:var(--serif);line-height:1.36;text-wrap:pretty}h1{font-size:clamp(34px,4.5vw,63px);margin:17px 0;letter-spacing:.015em}.coverText p{max-width:32em}.coverText .small{margin-bottom:0}.primary{background:var(--accent);color:#fff;border:0;border-radius:3px;padding:12px 22px;letter-spacing:.06em}.coverText .primary{margin-top:9px}.art{min-height:260px;position:relative;overflow:hidden}.art canvas{position:absolute;inset:0;width:100%;height:100%}.sheet,.card{background:#fffcf3;border:1px solid var(--line);max-width:740px;margin:26px auto;padding:clamp(20px,4vw,44px)}.sheet h2{font-size:clamp(23px,3vw,34px);margin:12px 0}.hint{margin:8px 0 16px}.choices{display:grid;gap:10px}.choice{background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:3px;padding:13px 17px;display:flex;gap:18px;align-items:center;text-align:left}.choice span{font:italic 18px Georgia,serif;color:var(--accent)}.choice[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 3px 0 var(--accent);background:var(--pale)}.actions{margin-top:22px}.quiet{border:0;color:var(--muted);background:transparent;padding:10px 0}.line small{font:15px Georgia,serif}.track{width:100%;height:4px;display:block;margin:14px 0 22px;appearance:none;border:0;background:var(--line)}.track::-webkit-progress-bar{background:var(--line)}.track::-webkit-progress-value{background:var(--accent);transition:width .2s}.track::-moz-progress-bar{background:var(--accent)}.card{max-width:650px;border-top:6px solid var(--accent);position:relative}.card h2{font-size:clamp(30px,4vw,44px);margin:7px 0;color:var(--accent)}.card h3{font-size:clamp(19px,2.6vw,25px);margin:9px 0 18px}.card h4{margin:0 0 4px;font-size:17px}.detail{border-top:1px solid var(--line);padding:11px 0}.detail p{margin:0;font-size:15px}.signature{border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font:14px var(--serif)}.outside{max-width:650px;margin:0 auto 24px}.outside span{font-size:12px;color:var(--muted)}footer{border-top:1px solid var(--line);margin-top:26px;padding:15px 0 25px;font-size:12px}.anim{animation:rise .23s ease-out}@keyframes rise{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.tabs a{border:1px solid var(--line);border-radius:2px;text-decoration:none;padding:5px 13px;font-size:14px}.tabs a:hover,.entry:hover{background:var(--pale)}.shelves{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}.shelf{background:#fffcf3;border:1px solid var(--line);padding:0 20px 10px;scroll-margin-top:12px}.shelfTop{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);min-height:77px}.shelf h2{margin:0;font-size:27px}.shelf .art{min-height:65px;width:115px}.entry{display:flex;justify-content:space-between;gap:12px;text-decoration:none;padding:11px 2px;border-bottom:1px solid #e5dfd2}.entry:last-child{border:0}.entry b{color:var(--accent)}.pairrow{display:grid;grid-template-columns:1fr auto auto;gap:7px;border-bottom:1px dotted var(--line);padding:4px 0;font-size:13px}.pairrow span{color:var(--muted)}
 @media(max-width:680px){header{height:56px}.brand{font-size:18px}.shelves{grid-template-columns:1fr}.cover,.catalogCover{margin:15px 0;grid-template-columns:1fr}.coverText{padding:25px 20px 16px}.cover .art,.catalogCover .art{min-height:115px}.sheet,.card{margin:15px auto}.shelfTop .art{min-height:60px}.tabs a{padding:5px 9px}.catalogCover h1{margin:7px 0}.outside{gap:6px}.crumb{font-size:12px}.card{padding:18px}.signature{font-size:12px}footer{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+</style><style>.portrait-studio{margin:15px 0 21px;--portrait-ink:var(--accent,var(--red,#814c3f))}
+#characterArt{display:block;width:100%;height:auto;border:1px solid #bdaf93;border-radius:3px}
+.portrait-actions,.face-modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.portrait-studio button,.poster-dialog button,#downloadCard{font:inherit;font-size:14px;border:1px solid #bdb3a3;border-radius:3px;background:#faf5e9;color:#453e37;padding:8px 13px;cursor:pointer}
+#makeCard,#downloadCard,.face-modes button[aria-pressed=true]{background:var(--portrait-ink,#784c3e);color:white;border-color:transparent}
+#faceEditor{margin-top:12px;border-top:1px solid #d5cbb7;padding-top:3px}.crop-controls{display:flex;flex-wrap:wrap;gap:8px 16px;margin:10px 0}
+.crop-controls label{font-size:13px;display:flex;align-items:center;gap:5px}.crop-controls input{width:85px;accent-color:var(--portrait-ink)}
+.portrait-note{font-size:12px;color:#665f54;margin:8px 0}.portrait-note span{display:block}.portrait-note span:empty{display:none}
+#exportOverlay{position:fixed;inset:0;z-index:500;overflow-y:auto;overscroll-behavior:contain;background:#262825bf;padding:clamp(8px,3vw,28px);text-align:center}
+#exportOverlay[hidden],#faceEditor[hidden]{display:none!important}.poster-dialog{margin:0 auto;background:#f8f3e7;max-width:570px;padding:14px 16px 24px;color:#332f2c;border-radius:5px}
+.poster-bar{display:flex;align-items:center;justify-content:space-between;background:#f8f3e7;position:sticky;top:0;padding:5px 0}
+.poster-dialog p{font-size:13px;margin:9px 0 12px}.poster-dialog img{display:block;width:100%;height:auto;user-select:auto;-webkit-touch-callout:default}.poster-dialog a{display:inline-block;margin-top:14px;text-decoration:none}
 </style></head><body style="--accent:#924b50;--pale:#f0deda"><div class="wrap"><header><span class="brand"><span class="mark">册</span>性情手册</span><span class="crumb">恋爱情感类</span></header>
 <main><section id="intro" class="cover"><div class="coverText"><span class="sectiontag">恋爱情感类 / 趣味测试</span><h1>情侣适配度测试</h1><p>两人各自答同一套 40 题。交接设备后，一起看哪里同频、哪里适合商量。</p><button class="primary" id="start">开始测试 →</button><p class="small">双人轮流 · 每人 40 题</p></div><div class="art" aria-hidden="true"><canvas data-plate="2"></canvas></div></section>
 <section id="quiz" class="sheet" hidden><div class="line"><span class="sectiontag" id="phase"></span><small id="counter"></small></div><progress class="track" id="progress" aria-label="已答题数" max="40"></progress><h2 id="prompt" tabindex="-1"></h2><div class="choices" id="choices"></div><div class="actions"><button class="quiet" id="back">← 上一题</button><button class="primary" id="next" disabled>下一题 →</button></div></section>
 <section hidden id="handoff" class="sheet"><span class="sectiontag">双人测试 · 换人作答</span><h2>轮到第二位了</h2><p>请把设备交给对方。接下来独立完成同样的 40 题，最后一起拆开报告。</p><button class="primary" id="take">我是第二位，开始作答 →</button></section>
-<section id="result" hidden><article class="card"><div class="sectiontag">情侣适配度测试</div><h2 id="resName" tabindex="-1"></h2><h3 id="quote"></h3><div id="details"></div><div class="signature"><span>性情手册 · 恋爱情感类</span><span>趣味结果签</span></div></article><div class="actions outside"><span>截屏收藏这张结果签</span><button id="restart" class="primary">重新测试 ↻</button></div></section></main><footer><span>性情手册 · 趣味测试集</span><span>仅供娱乐与自我观察</span></footer></div><script>const TEST={"title": "情侣适配度测试", "desc": "两人各自答同一套 40 题。交接设备后，一起看哪里同频、哪里适合商量。", "profiles": [["同拍二重奏", "相近", "很多时候，你们不用数拍就能一起进歌。", "相近的习惯可以成为共同生活的省力设置。", "互猜一次对方最想保留的约会习惯。"], ["交换声部", "有同有异", "有的地方齐唱，有的地方轮流领唱。", "你们有现成的共同点，也有值得主动协商的空间。", "交换设计一次周末，每人负责半天。"], ["反差合奏", "差异较多", "听见不同的拍子，才知道哪里该给彼此留白。", "把各自习惯说清，可以为同一件事找到两种做法。", "各写一句“下次我希望你先问我什么”。"]], "questions": [{"text": "两人各自出差三天，你希望怎样联系？", "options": [{"label": "各自专心，回来慢慢讲", "points": {"联系频率": -2}}, {"label": "睡前互报平安就好", "points": {"联系频率": -1}}, {"label": "早中晚都交换小消息", "points": {"联系频率": 2}}, {"label": "每天抽一段时间通话", "points": {"联系频率": 1}}]}, {"text": "周末想看一场演出，你希望何时决定？", "options": [{"label": "周中先定个场次", "points": {"提前安排": 1}}, {"label": "走到附近再看想不想进", "points": {"提前安排": -2}}, {"label": "当天看还有没有合适的票", "points": {"提前安排": -1}}, {"label": "开票就一起锁定座位", "points": {"提前安排": 2}}]}, {"text": "两个人的年假刚好重合，你想？", "options": [{"label": "各自去想去的地方，回来交换故事", "points": {"共同活动": -2}}, {"label": "整段假期都一起安排", "points": {"共同活动": 2}}, {"label": "多半同行，留半天自由活动", "points": {"共同活动": 1}}, {"label": "只定一两天共同出游", "points": {"共同活动": -1}}]}, {"text": "约会中一句玩笑让你不舒服，你想何时说？", "options": [{"label": "睡一觉，次日找合适时段谈", "points": {"即时沟通": -2}}, {"label": "当场说清感受", "points": {"即时沟通": 2}}, {"label": "回家想好措辞再提", "points": {"即时沟通": -1}}, {"label": "等走到安静处马上说", "points": {"即时沟通": 1}}]}, {"text": "忙碌的工作日突然看见有趣的小狗，你会？", "options": [{"label": "晚上见面翻给对方看", "points": {"联系频率": -1}}, {"label": "立刻拍了发去再聊两句", "points": {"联系频率": 2}}, {"label": "午休时把照片发过去", "points": {"联系频率": 1}}, {"label": "留在自己的相册里", "points": {"联系频率": -2}}]}, {"text": "第一次双人旅行，出发前你会？", "options": [{"label": "到了车站再一起挑目的地", "points": {"提前安排": -2}}, {"label": "只订第一晚，其余边走边说", "points": {"提前安排": -1}}, {"label": "把每天路线车次排好", "points": {"提前安排": 2}}, {"label": "定住宿和几个必去点", "points": {"提前安排": 1}}]}, {"text": "伴侣报了一门你不熟悉的课，你会？", "options": [{"label": "想一起报名练习", "points": {"共同活动": 2}}, {"label": "陪去体验第一节", "points": {"共同活动": 1}}, {"label": "等他回来教我一招", "points": {"共同活动": -1}}, {"label": "让它成为他自己的兴趣", "points": {"共同活动": -2}}]}, {"text": "两个人对花销意见不同，你偏好？", "options": [{"label": "坐下来当场谈清各自顾虑", "points": {"即时沟通": 2}}, {"label": "先各写想法，晚上交换", "points": {"即时沟通": -1}}, {"label": "先简短聊一轮再暂停", "points": {"即时沟通": 1}}, {"label": "约周末单独拿时间整理和讨论", "points": {"即时沟通": -2}}]}, {"text": "其中一人去参加全天培训，你希望？", "options": [{"label": "休息间隙能互发几条", "points": {"联系频率": 2}}, {"label": "中午交换一下近况", "points": {"联系频率": 1}}, {"label": "等下次见面再听见闻", "points": {"联系频率": -2}}, {"label": "结束时说一声就好", "points": {"联系频率": -1}}]}, {"text": "周五问明天吃什么，你想怎样回答？", "options": [{"label": "明早看想吃什么再买", "points": {"提前安排": -1}}, {"label": "现在确定菜单并买食材", "points": {"提前安排": 2}}, {"label": "先挑料理类型和大致时间", "points": {"提前安排": 1}}, {"label": "逛到哪儿馋了就在哪儿吃", "points": {"提前安排": -2}}]}, {"text": "周末两人都在家，你理想的上午是？", "options": [{"label": "一起吃饭再做一项家务", "points": {"共同活动": 1}}, {"label": "各忙各的，中间聊几句", "points": {"共同活动": -1}}, {"label": "各找安静的小角落专心做事", "points": {"共同活动": -2}}, {"label": "做饭收拾打游戏都一起", "points": {"共同活动": 2}}]}, {"text": "聊天里出现误会，你更想？", "options": [{"label": "等双方忙完再发完整回复", "points": {"即时沟通": -1}}, {"label": "先确认一句对方听到的意思", "points": {"即时沟通": 1}}, {"label": "先放下手机，想清楚再约谈", "points": {"即时沟通": -2}}, {"label": "马上接通电话澄清", "points": {"即时沟通": 2}}]}, {"text": "伴侣独自旅行，哪种约定舒服？", "options": [{"label": "约好每天晚上聊一会儿", "points": {"联系频率": 1}}, {"label": "各自享受离线时间", "points": {"联系频率": -2}}, {"label": "到新住处报个平安", "points": {"联系频率": -1}}, {"label": "沿途随时分享新发现", "points": {"联系频率": 2}}]}, {"text": "要去见对方家人，你想提前知道？", "options": [{"label": "谁来、流程、几点离开", "points": {"提前安排": 2}}, {"label": "地点和主要来客", "points": {"提前安排": 1}}, {"label": "让对方带路，到时再认识", "points": {"提前安排": -2}}, {"label": "当天问声几点到就够", "points": {"提前安排": -1}}]}, {"text": "伴侣要和多年好友聚会，你倾向？", "options": [{"label": "结束后去接人顺便问候", "points": {"共同活动": -1}}, {"label": "让他们单独叙旧，自己另约活动", "points": {"共同活动": -2}}, {"label": "想一起去认识整桌朋友", "points": {"共同活动": 2}}, {"label": "去打个招呼再看情况", "points": {"共同活动": 1}}]}, {"text": "争执到一半你有点激动，你会？", "options": [{"label": "停五分钟回来接着谈", "points": {"即时沟通": 1}}, {"label": "约好明天，先各自休息", "points": {"即时沟通": -2}}, {"label": "放慢语速继续谈眼前这点", "points": {"即时沟通": 2}}, {"label": "约今晚散步时再说", "points": {"即时沟通": -1}}]}, {"text": "不同班次让你们见不到面，你想？", "options": [{"label": "等共同休息日坐下慢聊", "points": {"联系频率": -2}}, {"label": "用语音串起一天的小事", "points": {"联系频率": 2}}, {"label": "有重要事再留言", "points": {"联系频率": -1}}, {"label": "留一条当天的语音日记", "points": {"联系频率": 1}}]}, {"text": "两人要共同买张书桌，你会？", "options": [{"label": "提前选店，约好去试", "points": {"提前安排": 1}}, {"label": "遇到喜欢的那张再决定", "points": {"提前安排": -2}}, {"label": "逛到家具店再讨论", "points": {"提前安排": -1}}, {"label": "先量尺寸列预算和候选款", "points": {"提前安排": 2}}]}, {"text": "逛商场两人兴趣不一样，你会？", "options": [{"label": "轮流陪对方逛完想看的店", "points": {"共同活动": 2}}, {"label": "分头逛，到餐厅碰面", "points": {"共同活动": -1}}, {"label": "各按想法安排，回家再分享", "points": {"共同活动": -2}}, {"label": "先一起逛两家再分开", "points": {"共同活动": 1}}]}, {"text": "伴侣今天的语气不同，你想怎样确认？", "options": [{"label": "找个没人的角落问问", "points": {"即时沟通": 1}}, {"label": "现在就问刚才那句是什么意思", "points": {"即时沟通": 2}}, {"label": "等一天结束再问近况", "points": {"即时沟通": -1}}, {"label": "给对方时间，次日再邀请交流", "points": {"即时沟通": -2}}]}, {"text": "一天没说上话，睡前你会怎么做？", "options": [{"label": "打个短电话说说今天", "points": {"联系频率": 2}}, {"label": "留个表情让对方随意看", "points": {"联系频率": -1}}, {"label": "发一句晚安等个回应", "points": {"联系频率": 1}}, {"label": "让对方早点休息，改日再聊", "points": {"联系频率": -2}}]}, {"text": "朋友提出和你们拼车出游，你希望？", "options": [{"label": "当天碰巧顺路就同行", "points": {"提前安排": -2}}, {"label": "出发前一晚再碰安排", "points": {"提前安排": -1}}, {"label": "马上定出发回程和分摊办法", "points": {"提前安排": 2}}, {"label": "先约上车地点和大致时间", "points": {"提前安排": 1}}]}, {"text": "两人想培养运动习惯，你倾向？", "options": [{"label": "各练各的，偶尔交换体验", "points": {"共同活动": -1}}, {"label": "完全按各自兴趣选项目和时间", "points": {"共同活动": -2}}, {"label": "每周一起练一两次", "points": {"共同活动": 1}}, {"label": "固定同练一个项目", "points": {"共同活动": 2}}]}, {"text": "共同旅行时冒出分歧，你倾向？", "options": [{"label": "停在路边先把不同想法说完", "points": {"即时沟通": 2}}, {"label": "暂行备用路线，晚餐再谈", "points": {"即时沟通": -1}}, {"label": "各自消化，等回到住处再约时间", "points": {"即时沟通": -2}}, {"label": "先确认双方需求再继续走", "points": {"即时沟通": 1}}]}, {"text": "一起开会不方便看手机，你习惯？", "options": [{"label": "散会有事再联系", "points": {"联系频率": -1}}, {"label": "提前说大概几点有空", "points": {"联系频率": 1}}, {"label": "各自处理日程，无需专门交代", "points": {"联系频率": -2}}, {"label": "开会前和结束后都说一声", "points": {"联系频率": 2}}]}, {"text": "纪念日将近，你想怎么准备？", "options": [{"label": "当天再选想做的小事", "points": {"提前安排": -1}}, {"label": "把活动顺序和餐厅都先订好", "points": {"提前安排": 2}}, {"label": "预留那个晚上和一项主活动", "points": {"提前安排": 1}}, {"label": "看心情，遇到合适时刻再庆祝", "points": {"提前安排": -2}}]}, {"text": "下班都很累，两张活动券可以拆开用，你想？", "options": [{"label": "各自决定是否去以及何时去", "points": {"共同活动": -2}}, {"label": "挑个共同方便的短场次", "points": {"共同活动": 1}}, {"label": "等两人都好些再一起用", "points": {"共同活动": 2}}, {"label": "各用一张，结束后吃饭", "points": {"共同活动": -1}}]}, {"text": "朋友在场时出现意见冲突，你会？", "options": [{"label": "回去各想一阵再联系", "points": {"即时沟通": -1}}, {"label": "留到明天双方放松后说", "points": {"即时沟通": -2}}, {"label": "约散场后马上确认误会", "points": {"即时沟通": 1}}, {"label": "请对方到旁边立即聊两句", "points": {"即时沟通": 2}}]}, {"text": "听到对方很喜欢的一首歌，你会？", "options": [{"label": "当天分享歌曲和一句话", "points": {"联系频率": 1}}, {"label": "先自己听，不专门发消息", "points": {"联系频率": -2}}, {"label": "边听边发消息同步感受", "points": {"联系频率": 2}}, {"label": "存进下次见面的歌单", "points": {"联系频率": -1}}]}, {"text": "下个月双方都可能加班，如何约见最舒服？", "options": [{"label": "先圈固定日期并留备选", "points": {"提前安排": 2}}, {"label": "先标两个候选周末", "points": {"提前安排": 1}}, {"label": "谁有空谁临时发邀请", "points": {"提前安排": -2}}, {"label": "每周看情况再约", "points": {"提前安排": -1}}]}, {"text": "搬进同一套房后，你想怎样布置书房？", "options": [{"label": "两张桌子，保留共同工作时段", "points": {"共同活动": 1}}, {"label": "一张大桌随时并肩做事", "points": {"共同活动": 2}}, {"label": "分开工作，偶尔同读一本书", "points": {"共同活动": -1}}, {"label": "各有能关门的空间", "points": {"共同活动": -2}}]}, {"text": "收到一段不易理解的信息，你想？", "options": [{"label": "先等情绪过去再开启话题", "points": {"即时沟通": -2}}, {"label": "回一句我有点没读懂", "points": {"即时沟通": 1}}, {"label": "立刻打过去听完整解释", "points": {"即时沟通": 2}}, {"label": "写下疑问，晚点统一问", "points": {"即时沟通": -1}}]}, {"text": "你们一周只能见一次面，平时怎样过得舒服？", "options": [{"label": "定两三次轻松的通话", "points": {"联系频率": 1}}, {"label": "每天都有几段小对话", "points": {"联系频率": 2}}, {"label": "主要靠一次周中问候", "points": {"联系频率": -1}}, {"label": "把聊天留给见面那天", "points": {"联系频率": -2}}]}, {"text": "一起做饭有客人来，你喜欢怎样备菜？", "options": [{"label": "等客人到了大家一起挑", "points": {"提前安排": -2}}, {"label": "列分量和出锅时间", "points": {"提前安排": 2}}, {"label": "先看看冰箱临场搭配", "points": {"提前安排": -1}}, {"label": "买齐主要原料再分工", "points": {"提前安排": 1}}]}, {"text": "春天要不要种花，你提议？", "options": [{"label": "每人自由决定是否参与", "points": {"共同活动": -2}}, {"label": "一起选种，之后轮班照料", "points": {"共同活动": 1}}, {"label": "选花翻土浇水都共同完成", "points": {"共同活动": 2}}, {"label": "各管各的盆，偶尔交换花苗", "points": {"共同活动": -1}}]}, {"text": "一次争论后你逐渐平静，你更想？", "options": [{"label": "先做自己的事，晚些再约", "points": {"即时沟通": -1}}, {"label": "马上坐回去继续谈", "points": {"即时沟通": 2}}, {"label": "留一个完整晚上的空间", "points": {"即时沟通": -2}}, {"label": "发句我准备好了，问能否接着说", "points": {"即时沟通": 1}}]}, {"text": "早上一个人先出门，你想怎样道别？", "options": [{"label": "留字条，到站再发个消息", "points": {"联系频率": 2}}, {"label": "轻轻说声晚上见", "points": {"联系频率": -1}}, {"label": "让对方继续睡，照常去忙", "points": {"联系频率": -2}}, {"label": "当面道别后午间聊几句", "points": {"联系频率": 1}}]}, {"text": "旅行临时多了一天，你想？", "options": [{"label": "今晚就订好明天车票和参观时段", "points": {"提前安排": 2}}, {"label": "明早吃饭时再聊", "points": {"提前安排": -1}}, {"label": "先选一个最想去的点", "points": {"提前安排": 1}}, {"label": "出门时随便挑个方向", "points": {"提前安排": -2}}]}, {"text": "两个人都想去书展，你怎么逛？", "options": [{"label": "先一起看主展再自由看", "points": {"共同活动": 1}}, {"label": "全程同行轮流选摊", "points": {"共同活动": 2}}, {"label": "各自逛，午餐时合流", "points": {"共同活动": -1}}, {"label": "各用各的日程，晚点交换收获", "points": {"共同活动": -2}}]}, {"text": "有件小事一直没谈拢，睡前你会？", "options": [{"label": "先用十分钟说出各自的重点", "points": {"即时沟通": 2}}, {"label": "先休息，等双方都沉淀后再约", "points": {"即时沟通": -2}}, {"label": "确认还在意彼此，再聊一个问题", "points": {"即时沟通": 1}}, {"label": "约明天某个时间再专心说", "points": {"即时沟通": -1}}]}], "axes": ["联系频率", "提前安排", "共同活动", "即时沟通"], "mode": "分维度"};</script><script>const Q=TEST.questions, dims=TEST.axes, isPair=TEST.title==='情侣适配度测试';
+<section id="result" hidden><article class="card"><div class="sectiontag">情侣适配度测试</div><h2 id="resName" tabindex="-1"></h2><div id="portraitStudio" class="portrait-studio">
+ <canvas id="characterArt" width="960" height="600" role="img" aria-label="专属卡通画像"></canvas>
+ <div class="portrait-actions"><button type="button" id="chooseFace">换成我的头像</button><button type="button" id="makeCard">保存结果卡 ↓</button></div>
+ <input type="file" id="faceFile" accept="image/*" hidden>
+ <div id="faceEditor" hidden>
+  <div class="face-modes" role="group" aria-label="头像画风"><button type="button" data-face-mode="original" aria-pressed="true">头像原图</button><button type="button" data-face-mode="styled" id="styledFace" aria-pressed="false">绘本画风</button><button type="button" id="resetPortrait">恢复角色</button></div>
+  <div class="crop-controls"><label>缩放<input id="faceZoom" type="range" min="1" max="3.5" step=".05" value="1"></label><label>左右<input id="faceX" type="range" min="-100" max="100" value="0"></label><label>上下<input id="faceY" type="range" min="-100" max="100" value="0"></label></div>
+ </div>
+ <div class="portrait-note">相册图片仅在此设备上处理。<span id="portraitStatus" role="status"></span></div>
+</div>
+<h3 id="quote"></h3><div id="details"></div><div class="signature"><span>性情手册 · 恋爱情感类</span><span>趣味结果签</span></div></article><div class="actions outside"><button id="restart" class="primary">重新测试 ↻</button></div></section></main><footer><span>性情手册 · 趣味测试集</span><span>仅供娱乐与自我观察</span></footer></div><script>const TEST={"title": "情侣适配度测试", "desc": "两人各自答同一套 40 题。交接设备后，一起看哪里同频、哪里适合商量。", "profiles": [["同拍二重奏", "相近", "很多时候，你们不用数拍就能一起进歌。", "相近的习惯可以成为共同生活的省力设置。", "互猜一次对方最想保留的约会习惯。"], ["交换声部", "有同有异", "有的地方齐唱，有的地方轮流领唱。", "你们有现成的共同点，也有值得主动协商的空间。", "交换设计一次周末，每人负责半天。"], ["反差合奏", "差异较多", "听见不同的拍子，才知道哪里该给彼此留白。", "把各自习惯说清，可以为同一件事找到两种做法。", "各写一句“下次我希望你先问我什么”。"]], "questions": [{"text": "两人各自出差三天，你希望怎样联系？", "options": [{"label": "各自专心，回来慢慢讲", "points": {"联系频率": -2}}, {"label": "睡前互报平安就好", "points": {"联系频率": -1}}, {"label": "早中晚都交换小消息", "points": {"联系频率": 2}}, {"label": "每天抽一段时间通话", "points": {"联系频率": 1}}]}, {"text": "周末想看一场演出，你希望何时决定？", "options": [{"label": "周中先定个场次", "points": {"提前安排": 1}}, {"label": "走到附近再看想不想进", "points": {"提前安排": -2}}, {"label": "当天看还有没有合适的票", "points": {"提前安排": -1}}, {"label": "开票就一起锁定座位", "points": {"提前安排": 2}}]}, {"text": "两个人的年假刚好重合，你想？", "options": [{"label": "各自去想去的地方，回来交换故事", "points": {"共同活动": -2}}, {"label": "整段假期都一起安排", "points": {"共同活动": 2}}, {"label": "多半同行，留半天自由活动", "points": {"共同活动": 1}}, {"label": "只定一两天共同出游", "points": {"共同活动": -1}}]}, {"text": "约会中一句玩笑让你不舒服，你想何时说？", "options": [{"label": "睡一觉，次日找合适时段谈", "points": {"即时沟通": -2}}, {"label": "当场说清感受", "points": {"即时沟通": 2}}, {"label": "回家想好措辞再提", "points": {"即时沟通": -1}}, {"label": "等走到安静处马上说", "points": {"即时沟通": 1}}]}, {"text": "忙碌的工作日突然看见有趣的小狗，你会？", "options": [{"label": "晚上见面翻给对方看", "points": {"联系频率": -1}}, {"label": "立刻拍了发去再聊两句", "points": {"联系频率": 2}}, {"label": "午休时把照片发过去", "points": {"联系频率": 1}}, {"label": "留在自己的相册里", "points": {"联系频率": -2}}]}, {"text": "第一次双人旅行，出发前你会？", "options": [{"label": "到了车站再一起挑目的地", "points": {"提前安排": -2}}, {"label": "只订第一晚，其余边走边说", "points": {"提前安排": -1}}, {"label": "把每天路线车次排好", "points": {"提前安排": 2}}, {"label": "定住宿和几个必去点", "points": {"提前安排": 1}}]}, {"text": "伴侣报了一门你不熟悉的课，你会？", "options": [{"label": "想一起报名练习", "points": {"共同活动": 2}}, {"label": "陪去体验第一节", "points": {"共同活动": 1}}, {"label": "等他回来教我一招", "points": {"共同活动": -1}}, {"label": "让它成为他自己的兴趣", "points": {"共同活动": -2}}]}, {"text": "两个人对花销意见不同，你偏好？", "options": [{"label": "坐下来当场谈清各自顾虑", "points": {"即时沟通": 2}}, {"label": "先各写想法，晚上交换", "points": {"即时沟通": -1}}, {"label": "先简短聊一轮再暂停", "points": {"即时沟通": 1}}, {"label": "约周末单独拿时间整理和讨论", "points": {"即时沟通": -2}}]}, {"text": "其中一人去参加全天培训，你希望？", "options": [{"label": "休息间隙能互发几条", "points": {"联系频率": 2}}, {"label": "中午交换一下近况", "points": {"联系频率": 1}}, {"label": "等下次见面再听见闻", "points": {"联系频率": -2}}, {"label": "结束时说一声就好", "points": {"联系频率": -1}}]}, {"text": "周五问明天吃什么，你想怎样回答？", "options": [{"label": "明早看想吃什么再买", "points": {"提前安排": -1}}, {"label": "现在确定菜单并买食材", "points": {"提前安排": 2}}, {"label": "先挑料理类型和大致时间", "points": {"提前安排": 1}}, {"label": "逛到哪儿馋了就在哪儿吃", "points": {"提前安排": -2}}]}, {"text": "周末两人都在家，你理想的上午是？", "options": [{"label": "一起吃饭再做一项家务", "points": {"共同活动": 1}}, {"label": "各忙各的，中间聊几句", "points": {"共同活动": -1}}, {"label": "各找安静的小角落专心做事", "points": {"共同活动": -2}}, {"label": "做饭收拾打游戏都一起", "points": {"共同活动": 2}}]}, {"text": "聊天里出现误会，你更想？", "options": [{"label": "等双方忙完再发完整回复", "points": {"即时沟通": -1}}, {"label": "先确认一句对方听到的意思", "points": {"即时沟通": 1}}, {"label": "先放下手机，想清楚再约谈", "points": {"即时沟通": -2}}, {"label": "马上接通电话澄清", "points": {"即时沟通": 2}}]}, {"text": "伴侣独自旅行，哪种约定舒服？", "options": [{"label": "约好每天晚上聊一会儿", "points": {"联系频率": 1}}, {"label": "各自享受离线时间", "points": {"联系频率": -2}}, {"label": "到新住处报个平安", "points": {"联系频率": -1}}, {"label": "沿途随时分享新发现", "points": {"联系频率": 2}}]}, {"text": "要去见对方家人，你想提前知道？", "options": [{"label": "谁来、流程、几点离开", "points": {"提前安排": 2}}, {"label": "地点和主要来客", "points": {"提前安排": 1}}, {"label": "让对方带路，到时再认识", "points": {"提前安排": -2}}, {"label": "当天问声几点到就够", "points": {"提前安排": -1}}]}, {"text": "伴侣要和多年好友聚会，你倾向？", "options": [{"label": "结束后去接人顺便问候", "points": {"共同活动": -1}}, {"label": "让他们单独叙旧，自己另约活动", "points": {"共同活动": -2}}, {"label": "想一起去认识整桌朋友", "points": {"共同活动": 2}}, {"label": "去打个招呼再看情况", "points": {"共同活动": 1}}]}, {"text": "争执到一半你有点激动，你会？", "options": [{"label": "停五分钟回来接着谈", "points": {"即时沟通": 1}}, {"label": "约好明天，先各自休息", "points": {"即时沟通": -2}}, {"label": "放慢语速继续谈眼前这点", "points": {"即时沟通": 2}}, {"label": "约今晚散步时再说", "points": {"即时沟通": -1}}]}, {"text": "不同班次让你们见不到面，你想？", "options": [{"label": "等共同休息日坐下慢聊", "points": {"联系频率": -2}}, {"label": "用语音串起一天的小事", "points": {"联系频率": 2}}, {"label": "有重要事再留言", "points": {"联系频率": -1}}, {"label": "留一条当天的语音日记", "points": {"联系频率": 1}}]}, {"text": "两人要共同买张书桌，你会？", "options": [{"label": "提前选店，约好去试", "points": {"提前安排": 1}}, {"label": "遇到喜欢的那张再决定", "points": {"提前安排": -2}}, {"label": "逛到家具店再讨论", "points": {"提前安排": -1}}, {"label": "先量尺寸列预算和候选款", "points": {"提前安排": 2}}]}, {"text": "逛商场两人兴趣不一样，你会？", "options": [{"label": "轮流陪对方逛完想看的店", "points": {"共同活动": 2}}, {"label": "分头逛，到餐厅碰面", "points": {"共同活动": -1}}, {"label": "各按想法安排，回家再分享", "points": {"共同活动": -2}}, {"label": "先一起逛两家再分开", "points": {"共同活动": 1}}]}, {"text": "伴侣今天的语气不同，你想怎样确认？", "options": [{"label": "找个没人的角落问问", "points": {"即时沟通": 1}}, {"label": "现在就问刚才那句是什么意思", "points": {"即时沟通": 2}}, {"label": "等一天结束再问近况", "points": {"即时沟通": -1}}, {"label": "给对方时间，次日再邀请交流", "points": {"即时沟通": -2}}]}, {"text": "一天没说上话，睡前你会怎么做？", "options": [{"label": "打个短电话说说今天", "points": {"联系频率": 2}}, {"label": "留个表情让对方随意看", "points": {"联系频率": -1}}, {"label": "发一句晚安等个回应", "points": {"联系频率": 1}}, {"label": "让对方早点休息，改日再聊", "points": {"联系频率": -2}}]}, {"text": "朋友提出和你们拼车出游，你希望？", "options": [{"label": "当天碰巧顺路就同行", "points": {"提前安排": -2}}, {"label": "出发前一晚再碰安排", "points": {"提前安排": -1}}, {"label": "马上定出发回程和分摊办法", "points": {"提前安排": 2}}, {"label": "先约上车地点和大致时间", "points": {"提前安排": 1}}]}, {"text": "两人想培养运动习惯，你倾向？", "options": [{"label": "各练各的，偶尔交换体验", "points": {"共同活动": -1}}, {"label": "完全按各自兴趣选项目和时间", "points": {"共同活动": -2}}, {"label": "每周一起练一两次", "points": {"共同活动": 1}}, {"label": "固定同练一个项目", "points": {"共同活动": 2}}]}, {"text": "共同旅行时冒出分歧，你倾向？", "options": [{"label": "停在路边先把不同想法说完", "points": {"即时沟通": 2}}, {"label": "暂行备用路线，晚餐再谈", "points": {"即时沟通": -1}}, {"label": "各自消化，等回到住处再约时间", "points": {"即时沟通": -2}}, {"label": "先确认双方需求再继续走", "points": {"即时沟通": 1}}]}, {"text": "一起开会不方便看手机，你习惯？", "options": [{"label": "散会有事再联系", "points": {"联系频率": -1}}, {"label": "提前说大概几点有空", "points": {"联系频率": 1}}, {"label": "各自处理日程，无需专门交代", "points": {"联系频率": -2}}, {"label": "开会前和结束后都说一声", "points": {"联系频率": 2}}]}, {"text": "纪念日将近，你想怎么准备？", "options": [{"label": "当天再选想做的小事", "points": {"提前安排": -1}}, {"label": "把活动顺序和餐厅都先订好", "points": {"提前安排": 2}}, {"label": "预留那个晚上和一项主活动", "points": {"提前安排": 1}}, {"label": "看心情，遇到合适时刻再庆祝", "points": {"提前安排": -2}}]}, {"text": "下班都很累，两张活动券可以拆开用，你想？", "options": [{"label": "各自决定是否去以及何时去", "points": {"共同活动": -2}}, {"label": "挑个共同方便的短场次", "points": {"共同活动": 1}}, {"label": "等两人都好些再一起用", "points": {"共同活动": 2}}, {"label": "各用一张，结束后吃饭", "points": {"共同活动": -1}}]}, {"text": "朋友在场时出现意见冲突，你会？", "options": [{"label": "回去各想一阵再联系", "points": {"即时沟通": -1}}, {"label": "留到明天双方放松后说", "points": {"即时沟通": -2}}, {"label": "约散场后马上确认误会", "points": {"即时沟通": 1}}, {"label": "请对方到旁边立即聊两句", "points": {"即时沟通": 2}}]}, {"text": "听到对方很喜欢的一首歌，你会？", "options": [{"label": "当天分享歌曲和一句话", "points": {"联系频率": 1}}, {"label": "先自己听，不专门发消息", "points": {"联系频率": -2}}, {"label": "边听边发消息同步感受", "points": {"联系频率": 2}}, {"label": "存进下次见面的歌单", "points": {"联系频率": -1}}]}, {"text": "下个月双方都可能加班，如何约见最舒服？", "options": [{"label": "先圈固定日期并留备选", "points": {"提前安排": 2}}, {"label": "先标两个候选周末", "points": {"提前安排": 1}}, {"label": "谁有空谁临时发邀请", "points": {"提前安排": -2}}, {"label": "每周看情况再约", "points": {"提前安排": -1}}]}, {"text": "搬进同一套房后，你想怎样布置书房？", "options": [{"label": "两张桌子，保留共同工作时段", "points": {"共同活动": 1}}, {"label": "一张大桌随时并肩做事", "points": {"共同活动": 2}}, {"label": "分开工作，偶尔同读一本书", "points": {"共同活动": -1}}, {"label": "各有能关门的空间", "points": {"共同活动": -2}}]}, {"text": "收到一段不易理解的信息，你想？", "options": [{"label": "先等情绪过去再开启话题", "points": {"即时沟通": -2}}, {"label": "回一句我有点没读懂", "points": {"即时沟通": 1}}, {"label": "立刻打过去听完整解释", "points": {"即时沟通": 2}}, {"label": "写下疑问，晚点统一问", "points": {"即时沟通": -1}}]}, {"text": "你们一周只能见一次面，平时怎样过得舒服？", "options": [{"label": "定两三次轻松的通话", "points": {"联系频率": 1}}, {"label": "每天都有几段小对话", "points": {"联系频率": 2}}, {"label": "主要靠一次周中问候", "points": {"联系频率": -1}}, {"label": "把聊天留给见面那天", "points": {"联系频率": -2}}]}, {"text": "一起做饭有客人来，你喜欢怎样备菜？", "options": [{"label": "等客人到了大家一起挑", "points": {"提前安排": -2}}, {"label": "列分量和出锅时间", "points": {"提前安排": 2}}, {"label": "先看看冰箱临场搭配", "points": {"提前安排": -1}}, {"label": "买齐主要原料再分工", "points": {"提前安排": 1}}]}, {"text": "春天要不要种花，你提议？", "options": [{"label": "每人自由决定是否参与", "points": {"共同活动": -2}}, {"label": "一起选种，之后轮班照料", "points": {"共同活动": 1}}, {"label": "选花翻土浇水都共同完成", "points": {"共同活动": 2}}, {"label": "各管各的盆，偶尔交换花苗", "points": {"共同活动": -1}}]}, {"text": "一次争论后你逐渐平静，你更想？", "options": [{"label": "先做自己的事，晚些再约", "points": {"即时沟通": -1}}, {"label": "马上坐回去继续谈", "points": {"即时沟通": 2}}, {"label": "留一个完整晚上的空间", "points": {"即时沟通": -2}}, {"label": "发句我准备好了，问能否接着说", "points": {"即时沟通": 1}}]}, {"text": "早上一个人先出门，你想怎样道别？", "options": [{"label": "留字条，到站再发个消息", "points": {"联系频率": 2}}, {"label": "轻轻说声晚上见", "points": {"联系频率": -1}}, {"label": "让对方继续睡，照常去忙", "points": {"联系频率": -2}}, {"label": "当面道别后午间聊几句", "points": {"联系频率": 1}}]}, {"text": "旅行临时多了一天，你想？", "options": [{"label": "今晚就订好明天车票和参观时段", "points": {"提前安排": 2}}, {"label": "明早吃饭时再聊", "points": {"提前安排": -1}}, {"label": "先选一个最想去的点", "points": {"提前安排": 1}}, {"label": "出门时随便挑个方向", "points": {"提前安排": -2}}]}, {"text": "两个人都想去书展，你怎么逛？", "options": [{"label": "先一起看主展再自由看", "points": {"共同活动": 1}}, {"label": "全程同行轮流选摊", "points": {"共同活动": 2}}, {"label": "各自逛，午餐时合流", "points": {"共同活动": -1}}, {"label": "各用各的日程，晚点交换收获", "points": {"共同活动": -2}}]}, {"text": "有件小事一直没谈拢，睡前你会？", "options": [{"label": "先用十分钟说出各自的重点", "points": {"即时沟通": 2}}, {"label": "先休息，等双方都沉淀后再约", "points": {"即时沟通": -2}}, {"label": "确认还在意彼此，再聊一个问题", "points": {"即时沟通": 1}}, {"label": "约明天某个时间再专心说", "points": {"即时沟通": -1}}]}], "axes": ["联系频率", "提前安排", "共同活动", "即时沟通"], "mode": "分维度"};</script><script>const Q=TEST.questions, dims=TEST.axes, isPair=TEST.title==='情侣适配度测试';
 const $=s=>document.getElementById(s);
 let pos=0,answers=[],first=null;
 function score(a){
@@ -72,6 +94,9 @@ function result(){
  }
  $('resName').textContent=p[0];$('quote').textContent=p[2];detail('隐藏优势',p[3]);detail('趣味彩蛋',p[4]);
  page('result');$('resName').focus({preventScroll:true});motion($('result'));
+ portraitStudio.show({name:p[0],title:TEST.title,quote:p[2],spec:portraitSpecs[p[0]],
+  sections:()=>Array.from($('details').children,el=>[el.querySelector('h4').textContent,
+   [el.querySelector('p').textContent,...Array.from(el.querySelectorAll('.pairrow'),row=>Array.from(row.children,s=>s.textContent).join('　'))].join('\n')])});
 }
 $('start').onclick=start;$('restart').onclick=start;$('back').onclick=()=>{if(pos){pos--;render()}};
 $('next').onclick=()=>{if(!Number.isInteger(answers[pos]))return;if(pos<Q.length-1){pos++;render()}else if(isPair&&!first){first=score(answers);answers=[];pos=0;page('handoff');$('take').focus()}else result()};
@@ -103,4 +128,267 @@ $('take').onclick=()=>{page('quiz');render()};
  let seed=73;for(let i=0;i<2300;i++){seed=(seed*16807)%2147483647;const x=(seed%325)-162;seed=(seed*16807)%2147483647;const y=(seed%175)-87;c.fillStyle='rgba(249,243,221,.24)';c.fillRect(x,y,1,1)}
 }
 document.querySelectorAll('canvas[data-plate]').forEach(cv=>new ResizeObserver(()=>drawPlate(cv)).observe(cv));
+</script><div id="exportOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="exportTitle">
+ <div class="poster-dialog"><div class="poster-bar"><strong id="exportTitle">保存结果卡</strong><button id="closeExport" type="button">关闭</button></div>
+ <p>手机微信可长按下图保存；电脑可下载 PNG。</p>
+ <img id="exportImage" alt="完整结果卡">
+ <a id="downloadCard" download>下载 PNG 图片 ↓</a></div>
+</div>
+<script>const portraitSpecs={"同拍二重奏": ["针织", "贝雷", "鼓", "花园", "ba7e79"], "交换声部": ["条纹", "短卷", "音符", "水岸", "698d90"], "反差合奏": ["夹克", "头带", "琵琶", "夜色", "8c74a8"]};
+function paintCharacter(canvas,spec,face,look){
+ const [outfit,hair,prop,scene,hex]=spec,coat='#'+hex;
+ const W=480,H=300,ink='#382f37',cream='#fff2d4',gold='#e7b75c',skin='#f4c7a3',blush='#de9d8d';
+ const c=canvas.getContext('2d');c.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);c.lineJoin='round';c.lineCap='round';
+ function path(d,fill,stroke=ink,width=2.1){const p=new Path2D(d);if(fill){c.fillStyle=fill;c.fill(p)}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke(p)}}
+ function oval(x,y,rx,ry,fill,stroke=null,width=2){c.beginPath();c.ellipse(x,y,rx,ry,0,0,2*Math.PI);c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke()}}
+ function rect(x,y,w,h,color){c.fillStyle=color;c.fillRect(x,y,w,h)}
+ function line(d,color=ink,width=2){path(d,null,color,width)}
+ function star(x,y,r,color){c.save();c.translate(x,y);c.scale(r,r);path('M0 -1 Q.12 -.12 1 0 Q.12 .12 0 1 Q-.12 .12 -1 0 Q-.12 -.12 0 -1Z',color,null);c.restore()}
+ const colors={
+ '街巷':['#eed7bb','#d0af91','#b49178'],'都会':['#d9dcdf','#b7c2c6','#9ba6af'],'群山':['#dce0cf','#acbaa4','#859b91'],'水岸':['#dce9dc','#afcdc3','#88afa9'],'田园':['#e9dfbd','#c4c495','#a5ac79'],'花园':['#f0dbcf','#dcb9a8','#c79188'],'夜色':['#45465e','#65647a','#34394e']
+ }[scene];
+ rect(0,0,W,H,colors[0]);oval(267,148,125,125,scene==='夜色'?'#787383':'#f8edda');
+ oval(368,59,23,23,scene==='夜色'?'#f6d99c':'#e4aa70');
+ if(scene==='夜色'){for(let i=0;i<29;i++)star((i*73+17)%W,(i*19+8)%150,i%4+1,cream)}
+ if(['群山','水岸','田园','夜色'].includes(scene)){
+  path('M0 183 Q39 160 72 170 L131 121 163 143 200 102 252 144 300 123 331 148 374 109 401 129 449 99 480 123 V300 H0Z',colors[1],null);
+  path('M0 210 Q76 150 143 180 T279 172 Q343 142 380 166 T480 147 V300 H0Z',colors[2],null);
+  if(scene==='水岸'){rect(0,205,480,95,'#b6d5cc');for(let i=0;i<25;i++){const x=i*53%470,y=215+i*13%84;line('M'+x+' '+y+'h'+(10+i%16),'#e2e9d5',1.6)}}
+ }else if(scene==='都会'||scene==='街巷'){
+  for(let i=0;i<12;i++){const x=i*47-20,y=152+(i*37)%46;rect(x,y,40,110,colors[1]);if(scene==='街巷')path('M'+(x-4)+' '+y+'l23 -16 25 16Z',colors[2],null);for(let k=0;k<3;k++){rect(x+6+k*10,y+12,4,10,colors[2]);rect(x+6+k*10,y+34,4,10,colors[2])}}
+ }else{for(const side of [1,-1]){c.save();if(side===-1){c.translate(480,0);c.scale(-1,1)}line('M15 292 Q84 207 78 120',colors[2],3);for(let i=0;i<6;i++){const x=28+i*9,y=263-i*23;path('M'+x+' '+y+'q-30 -3 -27 -23q23 0 27 23',colors[1],null);oval(x+10,y-13,11,6,colors[2])}c.restore()}}
+ // Fine print texture stays deterministic on redraw and export.
+ let seed=parseInt(hex,16);for(let i=0;i<1450;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;let x=seed%480;seed=(Math.imul(seed,1664525)+1013904223)>>>0;rect(x,seed%300,1,.9,'rgba(72,53,47,.085)')}
+ c.save();c.translate(238,0);
+ const dark='#39333a',ancient=['汉服','甲衣','帝服','长衫'].includes(outfit);
+ if(hair==='长发'||hair==='簪花'||hair==='花冠')path('M-47 108 Q-61 157 -63 213 Q-38 223 -14 201 L40 211 Q70 192 58 144 L47 90Z',dark);
+ // Shoulder silhouette, then distinct lapels, woven collars, armour and aprons.
+ path('M-28 184 Q-43 187 -70 198 Q-91 207 -101 237 L-120 303 H119 L106 255 Q97 218 74 207 L28 185Z',coat);
+ path('M-17 160 L-20 187 Q-20 203 1 211 Q20 202 23 187 L17 161Z',skin);
+ if(ancient||outfit==='披风'){
+  path('M-24 182 Q-12 200 18 220 L10 231 Q-22 210 -40 192Z',cream);
+  path('M26 182 L40 192 Q7 227 -29 257 L-37 249 Q-3 213 26 182Z',cream);
+  if(outfit==='甲衣'){for(let j=0;j<3;j++)for(let i=0;i<5;i++){let x=-39+i*16,y=252+j*14;path('M'+x+' '+y+'q7 4 14 0v6q-7 10 -14 0Z','#ada48a',ink,1)}}
+  if(outfit==='帝服'){for(let i=0;i<6;i++)star(-52+i*19,265+i%2*11,6,gold)}
+  if(outfit==='披风'){path('M-30 185 Q-60 217 -84 292 L-116 300 Q-102 231 -76 204Z',coat);oval(-25,201,6,6,gold,ink)}
+ }else if(outfit==='围裙'){path('M-35 191 L-27 191 -17 220 27 220 36 194 43 197 39 231 56 302 -54 302 -38 227Z','#ddbc90');path('M-17 249h40v18q-17 12 -39 0Z',coat)}
+ else if(outfit==='风衣'||outfit==='夹克'){path('M-28 186 L-56 208 -36 217 -43 226 -4 257 -15 203Z',cream);path('M26 187 L53 211 37 217 44 229 3 258 15 203Z',cream);line('M0 252v50',ink);oval(9,275,2.5,2.5,ink)}
+ else if(outfit==='连帽'){path('M-44 179 Q-60 206 -38 215 Q-7 230 1 227 Q28 228 48 209 L40 183 Q16 207 0 206Z',coat);line('M-11 220l-3 24 M14 220l3 24',cream,3)}
+ else {path('M-27 185 Q0 217 26 185 L35 192 Q7 227 -6 216 Q-28 211 -37 193Z',cream);if(outfit==='条纹'){for(let j=0;j<4;j++)path('M-61 '+(235+j*18)+'q58 11 122 0v5q-67 12 -123 0Z',cream,null)}else{for(let i=-4;i<=4;i++)line('M'+i*12+' 250l-2 38',cream,.9)}}
+ line('M-76 223 Q-66 239 -65 260 M83 229 Q70 246 68 267',ink,1.6);
+ const head='M-50 115 Q-53 77 -21 63 Q14 48 41 74 Q56 90 49 130 Q45 157 25 173 Q12 185 -4 182 Q-32 178 -45 153 Q-51 142 -50 115Z';
+ oval(-49,131,9,13,skin,ink);oval(49,130,9,13,skin,ink);path(head,skin);
+ if(face){
+  c.save();c.clip(new Path2D(head));const zoom=look.zoom, size=136*zoom;
+  c.drawImage(face,-size/2+look.x,-size/2+121+look.y,size,size);c.restore();line(head,ink,2.3);
+ }else{
+  oval(-30,145,9,4,blush);oval(30,145,9,4,blush);
+  const calm=['书','叶','羽扇','茶','花','卷'].includes(prop);
+  line('M-33 118q9 -6 17 -2 M14 116q9 -5 16 -1',ink,2.9);
+  if(calm){line('M-31 132q7 -6 14 -1 M15 131q7 -6 14 0',ink,2.6)}else{oval(-23,131,3.2,5,ink);oval(21,130,3.2,5,ink);oval(-22,129,1,1,cream);oval(22,128,1,1,cream)}
+  line('M0 133l-3 9 5 1','#aa7165',1.7);line('M-9 155q11 7 21 -2','#985a55',2.1);
+  if(['纶巾','帝冠','将盔'].includes(hair)){path('M-18 153q10 2 15 -3l3 2q6 -3 14 0l5 5q-12 -4 -18 -2q-10 -2 -19 1Z',dark,null);path('M-10 174q11 5 22 -1q-2 13 -9 17q-8 -5 -13 -16Z',dark)}
+ }
+ // Hair and hats overlay the forehead, including when a photo is inserted.
+ path('M-49 133 Q-59 106 -52 83 Q-44 52 -13 51 Q18 41 42 65 Q63 82 48 133 L42 110 Q26 103 18 85 Q-1 108 -33 111 L-29 104 Q-43 111 -49 133Z',dark);
+ line('M-41 94 Q-27 76 -4 70 M25 68q13 7 18 18','#715953',2);
+ if(['丸子','簪花','花冠','士冠','帝冠','布巾'].includes(hair)){oval(-1,55,18,16,dark,ink)}
+ if(hair==='簪花'||hair==='花冠'){line('M-29 74l56 -20',gold,3);for(const [x,y] of [[-31,75],[-20,66],[20,59]]){for(let i=0;i<5;i++)oval(x+5*Math.cos(i*1.257),y+5*Math.sin(i*1.257),4.2,4.2,'#d88c8b');oval(x,y,2.8,2.8,gold)}}
+ else if(hair==='草帽'||hair==='旅行帽'){path('M-43 87 Q-37 46 -19 42 Q-5 47 10 44 Q36 42 43 86Z',hair==='草帽'?'#d6af6a':coat);path('M-45 76q43 -8 86 0l3 9q-49 -8 -89 2Z',dark);path('M-74 94 Q-47 79 0 81 Q51 78 73 91 Q45 99 -2 92 Q-43 90 -74 99Z','#dcb97b')}
+ else if(hair==='士冠'||hair==='帝冠'||hair==='王冠'){path(hair==='士冠'?'M-24 70l5 -35q21 -9 37 0l6 35Z':hair==='帝冠'?'M-29 76l4 -32h50l6 33Z':'M-38 81l-9 -37 25 14 18 -27 17 25 28 -15 -8 38Z',hair==='王冠'?gold:dark);if(hair==='帝冠'){path('M-43 42l61 -8 30 9 -59 9Z',dark);for(let i=-3;i<4;i++){line('M'+i*11+' 47v18',gold,1.4);oval(i*11,65,2,3,gold)}}else line('M-20 67q19 -4 39 0',gold,3)}
+ else if(hair==='纶巾'||hair==='布巾'||hair==='头带'){if(hair==='纶巾')path('M-42 86 Q-41 57 -27 37 L-6 46 15 33 Q40 43 45 84Z','#a6b6b0');path('M-48 89q39 -14 90 -4l7 8q-55 -8 -96 6Z',hair==='头带'?gold:cream);path('M43 87q19 -7 28 -2l-17 9 18 12q-18 -3 -31 -13Z',coat)}
+ else if(hair==='贝雷'||hair==='水手'){path('M-53 84 Q-62 60 -29 54 Q-7 31 25 53 Q57 55 52 77 L35 88 Q-6 77 -51 93Z',hair==='水手'?cream:coat);line('M-46 88q40 -13 83 -4',ink,4)}
+ else if(hair==='将盔'){path('M-47 92Q-44 52 0 44Q43 53 48 93L35 85Q1 71 -47 92Z','#858777');path('M-7 76l6 -29 9 28 -8 10Z',gold);path('M-3 45Q-23 21 14 17q-7 10 1 14Z','#ad594b')}
+ else if(hair.endsWith('耳')){for(const side of [-1,1]){c.save();c.scale(side,1);if(hair==='狗耳'){oval(45,94,14,28,coat,ink)}else if(hair==='豚耳'){oval(37,74,11,11,coat,ink);oval(37,74,5,5,blush)}else{path('M19 75l15 -29q9 9 13 38Z',coat);path('M30 71l4 -13 6 17Z',blush,null)}c.restore()}path('M-49 105q0 -41 48 -45q41 -1 51 43q-22 -18 -49 -18q-29 0 -50 20Z',coat)}
+ else if(hair==='短卷'){for(let i=0;i<6;i++)oval(-38+i*14,78-Math.sin(i*.64)*11,12,10,dark)}
+ if(scene==='夜色'){star(-106,112,7,gold);star(112,85,5,cream)}
+ // The hand-held object has its own silhouette and is partially overlapped by the hand.
+ path('M86 230 Q97 250 90 268 Q84 282 70 277 L37 260 L44 245 Q61 249 73 252',coat);
+ path('M41 243l10 5 -8 16 -10 -5Z',cream);
+ c.save();c.translate(28,196);c.rotate(-.13);drawEmblem(prop,{c,path,line,oval,rect,star,ink,cream,gold,coat});c.restore();
+ oval(38,249,10,7,skin,ink,1.6);line('M33 248q4 -2 8 -1','#b77d64',1.1);
+ c.restore();
+}
+function drawEmblem(key,g){
+ const {c,path,line,oval,rect,star,ink,cream,gold,coat}=g;
+ const jade='#85a698',rose='#c77c73',wood='#b4825e';
+ const defs={
+ '书':['M0 12Q13 6 26 14Q39 4 56 9V53Q39 48 27 58Q12 52 0 53Z','M26 14v42M5 19q9 -2 15 1M34 19l15 -3M5 25l15 1'],
+ '笔记':['M7 4h40v54H7Z','M15 5v51M20 18h19M20 25h13'],
+ '卷':['M6 12h44v41H6q-8 -5 0 -10Z','M11 12v40M19 21h22M19 28h16M19 35h20'],
+ '地图':['M0 12l17 -6 18 7 19 -6v44l-19 6 -18 -6 -17 6Z','M17 7v43M35 13v42M4 37q11 -18 23 -7t21 -7'],
+ '信':['M0 14h57v38H0Z','M1 15l27 22 28 -22M2 49l18 -18M54 49L37 32'],
+ '票':['M0 18h55v8q-9 4 0 10v8H0v-8q8 -5 0 -10Z','M39 19v24M7 25h22M7 32h15'],
+ '茶':['M2 24h42l-3 16q-2 12 -18 12T4 40Z','M43 27q18 -5 10 11l-11 4M0 55h48M15 18q-6 -7 0 -13M28 17q6 -7 1 -12'],
+ '船':['M-2 40h61l-14 15H12Z','M26 38V0M26 3L5 34h21M31 10l15 23H31Z'],
+ '叶':['M12 49Q-1 19 53 4Q57 45 12 49Z','M5 58l40 -43M19 42l-1 -12M29 32l14 -2'],
+ '笔':['M7 54l8 -14L46 2l7 6 -33 37Z','M16 40l5 4M2 59l9 -7'],
+ '锤':['M12 49l21 -35 7 4 -20 38Z M19 8l10 -8 23 12 -7 15 -13 -7 2 -6Z','M15 48l5 3'],
+ '剑':['M8 55l9 -17 -9 -4 3 -5 11 4L42 0l0 20 -16 17 9 6 -3 4 -11 -6 -9 16Z','M23 33l15 -24'],
+ '枪':['M11 60L37 7l4 2 -27 53Z M32 16l4 -17 10 -9 -2 18Z','M35 15q-14 4 -18 17q10 -2 15 -10'],
+ '令旗':['M8 57V0h3v57Z M12 3q17 -9 43 1l-9 10 7 12q-22 -9 -41 -1Z','M18 10q11 -2 19 0'],
+ '伞':['M-3 28Q12 -3 31 0Q50 1 62 27Q53 22 44 28Q36 23 27 29Q19 24 11 29Q4 23 -3 28Z','M28 5v48q-4 10 -10 2M27 3Q15 10 11 26M30 4q9 8 13 22'],
+ '扇':['M24 52L-2 18Q23 -10 55 14Z','M24 48L8 14M24 47l-4 -39M25 47l8 -39M26 47l19 -33'],
+ '羽扇':['M22 47Q-5 36 1 11Q10 11 15 22Q6 -1 20 0l9 20q-2 -22 10 -25q9 10 0 28q8 -13 18 -13q3 19 -29 38Z','M20 56L36 9M22 45l-14 -25M27 36l-7 -26M30 37l21 -19'],
+ '相机':['M0 16h12l5 -9h21l5 8h11v33H0Z','M5 21h8M41 22h7'],
+ '算盘':['M0 10h54v43H0Z','M4 29h46M11 14v35M22 14v35M33 14v35M44 14v35'],
+ '琵琶':['M22 22l6 -24 7 1 -4 28q21 18 8 29q-13 13 -25 0q-11 -12 8 -34Z','M26 46l5 -44M23 45l5 -40M18 48h14'],
+ '酒壶':['M15 10h16v11q0 4 8 10q15 21 -11 25q-29 1 -21 -20l9 -14Z','M15 15h17M13 41q11 -8 22 0'],
+ '包':['M2 23h50l-2 32H4Z','M13 23v-7q0 -18 14 -18t13 25M4 36q19 9 45 0'],
+ '镜':['M19 36q-18 -8 -13 -23t21 -13q20 5 16 21q-3 13 -16 17l-8 21 -7 -2Z','M14 8l9 -3M12 15l7 -4'],
+ '盾':['M3 11l23 -9 24 9 -3 23q-4 14 -21 23Q9 47 6 34Z','M26 11v34M13 25h26'],
+ '钥匙':['M22 26q-18 6 -21 -9Q0 2 15 1q15 -1 17 13q1 4 -2 9l25 23 -4 6 -7 -5 -4 4 -6 -5 5 -5Z','M9 14q0 -7 7 -7t7 7q0 7 -7 7t-7 -7'],
+ '灯':['M12 19h29l5 29 -8 8H14l-8 -8Z','M15 18q0 -16 12 -16t12 16M9 47h35M19 47l7 -17 8 17'],
+ '面具':['M0 11Q12 5 24 13Q39 4 53 12q1 32 -27 45Q2 44 0 11Z','M8 23q7 -6 12 0M31 23q6 -6 13 0M17 38q9 10 18 -1'],
+ '水杯':['M8 9h34l-4 45H14Z','M11 29q8 -6 16 -2t13 -2M16 15v7'],
+ '汽水':['M17 1h18v7l-1 12q9 8 9 16v18H9V36q0 -9 9 -17Z','M16 7h21M11 36h29M11 46h29'],
+ '石':['M1 42l9 -22 21 -14 18 9 9 28 -19 12 -28 -1Z','M10 22l18 5 4 -20M28 27l12 27M28 27l21 -11'],
+ '风筝':['M1 18L28 -3l22 25 -30 27Z','M2 18l47 4M28 0l-8 47q4 13 -9 15'],
+ '麦克风':['M17 30q-9 -16 3 -25q14 -8 22 4q7 13 -8 23l-8 4 -13 21 -8 -4Z','M18 24l16 7M23 7l13 13'],
+ '线轴':['M9 8h34v6h-4v30h5v7H6v-7h4V14H6V8Z','M12 18l26 5 -26 5 26 5 -26 5q38 7 40 18'],
+ '音符':['M15 12l32 -9v33q-4 12 -15 7q-6 -7 8 -12V15l-19 5v25q-2 11 -15 9q-9 -8 9 -15Z',''],
+ '云':['M5 42q-13 -12 1 -20q2 -19 20 -14q13 -12 22 4q16 -1 14 15q11 13 -8 16Z',''],
+ '贝壳':['M24 49Q2 42 -1 21Q3 9 11 16Q13 4 21 10Q27 -1 33 9Q43 1 47 13Q59 10 56 23Q49 41 29 49Z','M25 45L9 20M27 43l-8 -27M28 43l4 -27M30 44l16 -24'],
+ '松果':['M26 3q15 2 20 24q6 19 -17 30q-25 -8 -23 -25Q9 13 26 3Z','M12 23l9 5 9 -7 10 5M10 33l10 5 11 -6 12 3M15 44l11 4 10 -6']
+ };
+ if(defs[key]){const fill=['剑','枪','锤','镜','麦克风'].includes(key)?'#b3bec0':['叶','包','灯','船','水杯'].includes(key)?jade:['面具','伞','令旗','汽水'].includes(key)?rose:['琵琶','松果','线轴','算盘'].includes(key)?wood:cream;const [shape,marks]=defs[key];path(shape,fill);if(marks)line(marks,ink,1.6);
+  if(key==='相机'){oval(29,32,11,11,jade,ink);oval(29,32,6,6,ink);oval(27,30,2,2,cream)}
+  if(key==='算盘'){for(let i=1;i<=4;i++){oval(i*11,21,4.8,3,gold,ink,1);oval(i*11,38,4.8,3,gold,ink,1)}}
+  return;
+ }
+ if(key==='花'){line('M20 56q2 -16 13 -33',jade,4);path('M23 43q-16 0 -15 -13q14 0 15 13Z',jade);for(let i=0;i<7;i++){let t=i*.898;oval(33+11*Math.cos(t),15+11*Math.sin(t),7,8,rose,ink,1)}oval(33,15,7,7,gold,ink);return}
+ if(key==='放大镜'){line('M22 32L4 54',wood,7);oval(32,21,18,18,jade,ink,3);line('M23 18q4 -9 14 -7',cream,3);return}
+ if(key==='奖牌'){path('M7 0h11l9 17L35 0h12L33 28H20Z',rose);oval(26,38,16,16,gold,ink);star(26,38,8,cream);return}
+ if(key==='鼓'){path('M4 18h46v25q-20 13 -46 0Z',rose);oval(27,18,23,8,cream,ink);line('M8 25l6 15 7 -12 8 15 7 -15 7 10',gold,2);return}
+ const fill=key==='橘'?'#dd9349':key==='毛线'?rose:gold;
+ oval(27,29,23,23,fill,ink);
+ if(key==='星盘'||key==='指南针'){oval(27,29,18,18,jade,ink);path('M15 41l8 -19 16 -9 -8 20Z',cream);oval(27,29,2,2,ink)}
+ if(key==='齿轮'){for(let i=0;i<8;i++){c.save();c.translate(27,29);c.rotate(i*Math.PI/4);rect(-4,-27,8,7,gold);c.restore()}oval(27,29,10,10,jade,ink)}
+ if(key==='橘'){path('M26 8q4 -13 19 -10q-5 12 -19 10Z',jade)}
+ if(key==='球'||key==='毛线'){line('M8 16q22 8 35 29M13 10q5 21 31 33M6 35q22 -5 38 -20',cream,2.2)}
+}
+
+const portraitStudio=(()=>{
+ const by=id=>document.getElementById(id), art=by('characterArt');
+ const file=by('faceFile'), editor=by('faceEditor'), message=by('portraitStatus'), overlay=by('exportOverlay');
+ const preview=by('exportImage'), download=by('downloadCard');
+ const sliders=['faceZoom','faceX','faceY'].map(by), [zoom,xPan,yPan]=sliders;
+ let model=null, source=null, ticket=0, mode='original', frame=0, locked=false;
+ function surface(w,h=w){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
+ function cropFace(){
+  if(!source)return null;
+  const side=Math.min(source.width,source.height)/Number(zoom.value);
+  const x=(source.width-side)*(Number(xPan.value)+100)/200,y=(source.height-side)*(Number(yPan.value)+100)/200;
+  const chip=surface(240),ctx=chip.getContext('2d',{willReadFrequently:true});
+  ctx.fillStyle='#f4dbc3';ctx.fillRect(0,0,240,240);
+  ctx.drawImage(source,x,y,side,side,0,0,240,240);
+  if(mode==='styled')inkFace(ctx,model.spec);
+  return chip;
+ }
+ function inkFace(ctx,spec){
+  const {width:w,height:h}=ctx.canvas, pixels=ctx.getImageData(0,0,w,h), dst=pixels.data,src=new Uint8ClampedArray(dst);
+  const color=parseInt(spec[4],16),accent=[color>>16,(color>>8)&255,color&255];
+  const historical=['汉服','长衫','帝服','甲衣'].includes(spec[0]),night=spec[3]==='夜色';
+  const tones=historical?6:night?7:8,paper=historical?[255,237,207]:night?[230,226,244]:[255,239,225];
+  const luminance=i=>.299*src[i]+.587*src[i+1]+.114*src[i+2];
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+   const i=(y*w+x)*4,L=luminance(i);let total=2,r=src[i]*2,g=src[i+1]*2,b=src[i+2]*2;
+   // Edge-preserving smoothing keeps the subject's facial landmarks readable.
+   for(const [dx,dy] of [[-2,0],[2,0],[0,-2],[0,2]]){
+    const n=(Math.max(0,Math.min(h-1,y+dy))*w+Math.max(0,Math.min(w-1,x+dx)))*4;
+    if(Math.abs(luminance(n)-L)<29){r+=src[n];g+=src[n+1];b+=src[n+2];total++}
+   }
+   r/=total;g/=total;b/=total;
+   const light=.299*r+.587*g+.114*b, band=Math.round(light/255*(tones-1))/(tones-1), tint=band<.5?accent:paper;
+   const right=i+(x<w-1?4:0),down=i+(y<h-1?w*4:0);
+   const edge=Math.min(.60,Math.max(0,(Math.abs(luminance(right)-L)+Math.abs(luminance(down)-L)-24)/100));
+   const tintAmount=historical?.30:.23;
+   [r,g,b].forEach((v,k)=>{const block=band*255+(v-light)*.72;dst[i+k]=(block*(1-tintAmount)+tint[k]*tintAmount)*(1-edge)+[54,48,58][k]*edge});
+  }
+  ctx.putImageData(pixels,0,0);
+ }
+ function draw(){
+  frame=0;if(!model)return;
+  paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
+  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':'，专属卡通画像'));
+ }
+ function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
+ function setMode(value){mode=value;for(const el of editor.querySelectorAll('[data-face-mode]'))el.setAttribute('aria-pressed',String(el.dataset.faceMode===value));schedule()}
+ function resetCrop(){zoom.value='1';xPan.value='0';yPan.value='0'}
+ function closeExport(){overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');if(model)by('makeCard').focus({preventScroll:true})}
+ function clear(){
+  ticket++;source=null;model=null;locked=false;file.value='';editor.hidden=true;message.textContent='';by('makeCard').disabled=false;overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');
+  if(frame)cancelAnimationFrame(frame);frame=0;
+ }
+ function show(data){
+  clear();model=data;resetCrop();mode='original';
+  const ancient=['汉服','长衫','帝服','甲衣'].includes(data.spec[0]);
+  by('styledFace').textContent=ancient?'彩墨画风':data.spec[3]==='夜色'?'夜色版画':'绘本画风';
+  draw();
+ }
+ file.addEventListener('change',async()=>{
+  const f=file.files[0];if(!f||!model)return;
+  const seq=++ticket;locked=true;by('makeCard').disabled=true;message.textContent='正在读取头像…';
+  const url=URL.createObjectURL(f);
+  try{
+   const img=new Image();
+   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
+   if(seq!==ticket||!model)return;
+   const scale=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));
+   const resized=surface(Math.max(1,Math.round(img.naturalWidth*scale)),Math.max(1,Math.round(img.naturalHeight*scale)));
+   resized.getContext('2d').drawImage(img,0,0,resized.width,resized.height);
+   source=resized;resetCrop();editor.hidden=false;setMode('original');draw();
+   message.textContent='头像已放入画中，可调整取景位置。';
+  }catch{if(seq===ticket)message.textContent='这张图片未能读取，请选择相册中的 JPG、PNG 或 WebP 图片。'}
+  finally{URL.revokeObjectURL(url);if(seq===ticket){file.value='';locked=false;by('makeCard').disabled=false}}
+ });
+ for(const el of editor.querySelectorAll('[data-face-mode]'))el.onclick=()=>setMode(el.dataset.faceMode);
+ sliders.forEach(el=>el.oninput=schedule);
+ by('resetPortrait').onclick=()=>{ticket++;source=null;file.value='';editor.hidden=true;locked=false;by('makeCard').disabled=false;message.textContent='已恢复角色画像。';draw()};
+ by('chooseFace').onclick=()=>file.click();
+ function wrap(ctx,text,width){
+  const lines=[];let row='';
+  for(const ch of Array.from(text)){if(ch==='\n'){lines.push(row);row='';continue}
+   if(row&&ctx.measureText(row+ch).width>width){lines.push(row);row=ch}else row+=ch}
+  if(row)lines.push(row);return lines;
+ }
+ function poster(){
+  draw();const w=900,pad=56,inner=w-pad*2,scratch=surface(w,1),measure=scratch.getContext('2d'),runs=[];let y=54;
+  const serif='"Songti SC","STSong","SimSun",serif',sans='"PingFang SC","Microsoft YaHei",sans-serif';
+  const color='#'+model.spec[4],ink='#322f33',accent='#784c3e';
+  function textBlock(str,size,lineH,font,col,bold=false){const fontValue=(bold?'bold ':'')+size+'px '+font;measure.font=fontValue;
+   for(const line of wrap(measure,str,inner)){runs.push({type:'text',line,y,font:fontValue,col});y+=lineH}}
+  textBlock('性情手册  /  '+model.title,24,35,sans,accent);y+=10;
+  textBlock(model.name,54,70,serif,ink,true);y+=10;
+  runs.push({type:'art',y});y+=Math.round(inner*art.height/art.width)+28;
+  textBlock(model.quote,34,49,serif,accent,true);y+=12;
+  for(const [label,content] of model.sections()){
+   if(!content)continue;runs.push({type:'rule',y});y+=18;textBlock(label,28,42,serif,ink,true);textBlock(content,26,40,sans,ink);y+=19;
+  }
+  y+=4;textBlock('性情手册 · 趣味结果签',22,32,sans,accent);
+  const card=surface(w,Math.ceil(y+30)),p=card.getContext('2d');
+  p.fillStyle='#faf5e8';p.fillRect(0,0,w,card.height);p.fillStyle=color;p.fillRect(0,0,w,10);p.textBaseline='top';
+  for(const r of runs){if(r.type==='art')p.drawImage(art,pad,r.y,inner,inner*art.height/art.width);
+   else if(r.type==='rule'){p.fillStyle='#d2c8b7';p.fillRect(pad,r.y,inner,2)}
+   else{p.fillStyle=r.col;p.font=r.font;p.fillText(r.line,pad,r.y)}}
+  return card.toDataURL('image/png');
+ }
+ by('makeCard').onclick=()=>{
+  if(!model||locked)return;
+  try{const uri=poster();preview.src=uri;preview.alt=model.name+'完整结果卡';download.href=uri;download.download='性情手册-'+model.name+'.png';
+   overlay.hidden=false;by('closeExport').focus({preventScroll:true});}
+  catch{message.textContent='长图生成失败，请重试或截屏保存。'}
+ };
+ by('closeExport').onclick=closeExport;
+ overlay.addEventListener('click',e=>{if(e.target===overlay)closeExport()});
+ document.addEventListener('keydown',e=>{
+  if(overlay.hidden)return;
+  if(e.key==='Escape'){e.preventDefault();closeExport()}
+  if(e.key==='Tab'){const first=by('closeExport'),last=download;
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+ });
+ by('restart').addEventListener('click',clear);
+ return {show};
+})();
 </script></body></html>
