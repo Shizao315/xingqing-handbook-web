@@ -19,14 +19,9 @@
 <section id="quiz" class="sheet" hidden><div class="line"><span class="sectiontag" id="phase"></span><small id="counter"></small></div><progress class="track" id="progress" aria-label="已答题数" max="40"></progress><h2 id="prompt" tabindex="-1"></h2><div class="choices" id="choices"></div><div class="actions"><button class="quiet" id="back">← 上一题</button><button class="primary" id="next" disabled>下一题 →</button></div></section>
 <section hidden id="handoff" class="sheet"><span class="sectiontag">双人测试 · 换人作答</span><h2>轮到第二位了</h2><p>请把设备交给对方。接下来独立完成同样的 40 题，最后一起拆开报告。</p><button class="primary" id="take">我是第二位，开始作答 →</button></section>
 <section id="result" hidden><article class="card"><div class="sectiontag">你在古代会拥有什么人生剧本</div><h2 id="resName" tabindex="-1"></h2><div id="portraitStudio" class="portrait-studio">
- <canvas id="characterArt" width="960" height="600" role="img" aria-label="专属卡通画像"></canvas>
- <div class="portrait-actions"><button type="button" id="chooseFace">换成我的头像</button><button type="button" id="makeCard">保存结果卡 ↓</button></div>
- <input type="file" id="faceFile" accept="image/*" hidden>
- <div id="faceEditor" hidden>
-  <div class="face-modes" role="group" aria-label="头像画风"><button type="button" data-face-mode="original" aria-pressed="true">头像原图</button><button type="button" data-face-mode="styled" id="styledFace" aria-pressed="false">绘本画风</button><button type="button" id="resetPortrait">恢复角色</button></div>
-  <div class="crop-controls"><label>缩放<input id="faceZoom" type="range" min="1" max="3.5" step=".05" value="1"></label><label>左右<input id="faceX" type="range" min="-100" max="100" value="0"></label><label>上下<input id="faceY" type="range" min="-100" max="100" value="0"></label></div>
- </div>
- <div class="portrait-note">相册图片仅在此设备上处理。<span id="portraitStatus" role="status"></span></div>
+ <canvas id="characterArt" width="960" height="600" role="img" aria-label="正面人物画像"></canvas>
+ <div class="portrait-actions"><button type="button" id="makeCard">保存结果卡 ↓</button></div>
+ <div id="portraitStatus" role="status"></div>
 </div>
 <h3 id="quote"></h3><div id="details"></div><div class="signature"><span>性情手册 · 历史古风类</span><span>趣味结果签</span></div></article><div class="actions outside"><button id="restart" class="primary">重新测试 ↻</button></div></section></main><footer><span>性情手册 · 趣味测试集</span><span>仅供娱乐与自我观察</span></footer></div><script>const TEST={"title": "你在古代会拥有什么人生剧本", "desc": "当名与利、远路与归途同时出现，你会接下哪一卷？", "profiles": [["修一城之约", "入局", "你的故事，从替大家多问一句开始。", "你能把个人的不便看成可以一起改善的事。", "终卷附录可能是一份贴在城门口的新告示。"], ["万里行记", "远游", "路的尽头，正好留给下一章。", "你能靠观察和适应在陌生处站稳脚跟。", "你的行囊里，地图磨破得最快。"], ["百年作坊", "守艺", "把一招练深，也能写成传奇。", "你能把经验保存下来，让下一位学徒少走弯路。", "后人认你的作品靠一处不起眼的收边。"], ["山居四时", "归田", "你把寻常一天，写成了圆满结局。", "你擅长从稳定的照料中获得长期回报。", "全书最紧张的一章可能叫“今夜抢收萝卜”。"]], "questions": [{"text": "老街招募周末志愿者，你去哪里报到？", "options": [{"label": "修复工坊", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "居民议事桌", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "走访路线组", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "社区小菜园", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "突然有半年自由时间，你先安排？", "options": [{"label": "做一个社区改善项目", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "沿陌生线路分段旅行", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "租一小块地过四季", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "跟师傅学一门手艺", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "朋友有间闲屋请你策划，你想开？", "options": [{"label": "旅人落脚站", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "家庭种植房", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "手工传习所", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "邻里议事厅", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "家乡要办小展，你想记录谁？", "options": [{"label": "照料院子的普通人", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "仍在开工的老匠人", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "推动街区改造的人", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "常年在路上的背包客", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "拿到一笔学习补贴，你报哪门课？", "options": [{"label": "传统工具使用", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "公共议题协商", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "旅行地图绘制", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "四季蔬果栽培", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "朋友骑车发现河道被堵，你会？", "options": [{"label": "和居民讨论清理方案", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "沿河走查各处现状", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "认养一小段岸边花地", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "修一套好用的清理工具", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "写封给五年后的信，你想问？", "options": [{"label": "那条远路走完了吗？", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "院里的树结果了吗？", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "最难的手法练成了吗？", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "当初提的建议落实了吗？", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "社团毕业前留一项传统，你提议？", "options": [{"label": "共同照料一棵果树", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "师兄师姐带一次实操", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "定期办开放议事会", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "每年走一条新路线", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "邻居外出留下几件东西，你想代管？", "options": [{"label": "业委会意见簿", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "一套户外地图", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "祖传木工箱", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "几盆正在开花的苗", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "路过老码头，你愿做什么？", "options": [{"label": "登船探下一站", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "向师傅学打一个绳结", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "找处安静岸坡种点花", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "帮忙听取改造意见", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "空白笔记本要写满一年，你记？", "options": [{"label": "每日练手的变化", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "阳台的晨昏与花期", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "一项公共提议的进展", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "每次出门的坐标", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "朋友来请教人生选择，你更想聊？", "options": [{"label": "怎样建立喜欢的日常", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "怎样让周围环境好一点", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "怎样在陌生地方重新开始", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "怎样把一门技艺学扎实", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "租下小院能先做一件事，你会？", "options": [{"label": "请邻居来商量公共角落", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "规划从这里出发的周边线路", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "在向阳处翻土播种", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "把厢房改成工作间", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "旧车站准备翻新，你最想参与？", "options": [{"label": "记录各线通向哪里", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "认领站前的小花圃", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "修复木质旧站牌", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "参与听证并整理诉求", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "街上有四场讲座，你坐进？", "options": [{"label": "一口院子里的四季", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "一把木椅如何做成", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "一次提案如何通过", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "独行者的越岭日记", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "一年只能订一份刊物，你挑？", "options": [{"label": "工艺打样手册", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "社区观察月报", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "远方路线通讯", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "节气生活笔记", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "家人问你周末学到了什么，你想答？", "options": [{"label": "认得一条新山路", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "帮居民写清了一条诉求", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "分清了几种幼苗", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "终于刨出平整的木面", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "朋友要搬离老街，你愿接手？", "options": [{"label": "居民联络小组", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "楼顶蔬菜角", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "每周手工教室", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "访客步行导览", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "学校让你设计一次实践，你想带队？", "options": [{"label": "照料一季校园菜畦", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "跟作坊师傅学做成品", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "去陌生城区做步行调查", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "讨论校门口拥堵", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "在小镇借宿时多出一天，你选择？", "options": [{"label": "参观并试做传统器具", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "搭本地车去终点站", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "参加镇民公开讨论", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "和房东一起整理院子", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "要给晚辈留一样东西，你想留？", "options": [{"label": "会年年开花的树", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "一件自己做的实物", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "一张写满经验的地图", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "大家共同商定的规则", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "收到一个公益邀约，你想改善？", "options": [{"label": "修理手艺无人接续", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "徒步线路没有路标", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "居民反馈没人整理", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "公共绿地缺少照料", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "老朋友碰面问你近况，你最想分享？", "options": [{"label": "途中遇到的陌生向导", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "一个终于被认真听见的建议", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "亲手收下的第一茬菜", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "第一次做成功的成品", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "夏日清早，你愿意为何早起？", "options": [{"label": "参加街坊的晨间议事", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "趁凉给小院浇水", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "占到清静的工作台", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "赶一班去远处的车", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "旅途带回一小袋纪念品，你想留下？", "options": [{"label": "当地人做的议事手册", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "多站盖章的旧车票", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "适合阳台种的本地种子", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "师傅送的半成品", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "社区要拍纪录片，你跟拍哪条线？", "options": [{"label": "骑手怎样穿过陌生群山", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "普通人怎样经营小菜圃", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "学徒怎样完成第一件作品", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "街坊怎样议定新规", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "有人借你一间店面一个月，你想做？", "options": [{"label": "分享自种的时令蔬菜", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "每天示范一种手艺", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "开固定的意见收集站", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "办一场旅人路线交换", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "准备做一份长期副业，你愿意？", "options": [{"label": "接少量定制手工作品", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "组织公众参与的项目", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "为游客设计步行线路", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "经营社区小花园", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "一张旧桌陪了你很多年，你会把它放到？", "options": [{"label": "青年旅舍", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "公共协商室", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "自家院里的树下", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "学徒工作房", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "周末去乡村体验，你跟着谁走？", "options": [{"label": "挨户听意见的志愿者", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "照看菜畦的大姐", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "开柴窑的老师傅", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "走山路的向导", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "新年愿望只能写一个动词，你怎样落实？", "options": [{"label": "养活一批春苗", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "练熟一种传统工序", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "启程走一段陌生路线", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "推动一次公开讨论", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "在车窗里看见荒废老院，你想象它变成？", "options": [{"label": "有人授徒的老作坊", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "收留旅人的补给站", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "让社区开口说事的地方", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "种满食材的生活小院", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "生活要删掉一项开销，你最舍不得哪笔？", "options": [{"label": "好工具的保养费", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "公共项目的资料费", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "院子里的种植费", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "远行交通费", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "一本书只有前言，你想续写？", "options": [{"label": "普通人的意见怎样汇在一起", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "一家人如何跟着四季过日子", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "一个人如何走到地图尽头", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "师徒两代怎样守住一门工艺", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}, {"text": "天黑前只够完成一个承诺，你去？", "options": [{"label": "替外出的邻居照看秧苗", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "赶上和旅伴约定的渡船", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "交付修好的老木匣", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "送出整理好的居民提案", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "十周年聚会想放一张成就照，你交？", "options": [{"label": "终于走到的远山", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "工作台上的成熟作品", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "改造后的街口", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "家人围坐的丰收饭桌", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "收到邀请去外地住一个月，你问房东？", "options": [{"label": "周边能走多少条新路线？", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "那里有志愿议事活动吗？", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "附近有愿意教人的作坊吗？", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "院子允许种点什么吗？", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}]}, {"text": "社区开放一面空墙，你提议贴？", "options": [{"label": "大家关心的问题和进展", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "公开授艺的时间表", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "本月分享蔬菜的日历", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "居民亲历的远行地图", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}]}, {"text": "退休的邻居愿意带徒，你想学？", "options": [{"label": "怎样识木纹下刨子", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}, {"label": "怎样留种待来年", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "怎样独自在陌生地找路", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "怎样和不同意见的人协商", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}]}, {"text": "如果今天是一章故事的最后一天，你愿怎样结束？", "options": [{"label": "坐在院里吃自己收的菜", "points": {"入局": 0, "远游": 0, "守艺": 0, "归田": 2}}, {"label": "在新地名下盖一个印章", "points": {"入局": 0, "远游": 2, "守艺": 0, "归田": 0}}, {"label": "看到告示上新规正式生效", "points": {"入局": 2, "远游": 0, "守艺": 0, "归田": 0}}, {"label": "把做好的器物交到学徒手里", "points": {"入局": 0, "远游": 0, "守艺": 2, "归田": 0}}]}], "axes": ["入局", "远游", "守艺", "归田"], "mode": "分型"};</script><script>const Q=TEST.questions, dims=TEST.axes, isPair=TEST.title==='情侣适配度测试';
 const $=s=>document.getElementById(s);
@@ -153,7 +148,7 @@ document.querySelectorAll('canvas[data-plate]').forEach(cv=>new ResizeObserver((
  <a id="downloadCard" download>下载 PNG 图片 ↓</a></div>
 </div>
 <script>const portraitSpecs={"修一城之约": ["汉服", "士冠", "卷", "街巷", "778865"], "万里行记": ["披风", "草帽", "地图", "群山", "a97546"], "百年作坊": ["围裙", "头带", "锤", "街巷", "996c4d"], "山居四时": ["汉服", "布巾", "叶", "田园", "8c9661"]};
-function paintCharacter(canvas,spec,face,look){
+function paintCharacter(canvas,spec){
  const [outfit,hair,prop,scene,hex]=spec,coat='#'+hex;
  const W=480,H=300,ink='#382f37',cream='#fff2d4',gold='#e7b75c',skin='#f4c7a3',blush='#de9d8d';
  const c=canvas.getContext('2d');c.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);c.lineJoin='round';c.lineCap='round';
@@ -196,18 +191,14 @@ function paintCharacter(canvas,spec,face,look){
  line('M-76 223 Q-66 239 -65 260 M83 229 Q70 246 68 267',ink,1.6);
  const head='M-50 115 Q-53 77 -21 63 Q14 48 41 74 Q56 90 49 130 Q45 157 25 173 Q12 185 -4 182 Q-32 178 -45 153 Q-51 142 -50 115Z';
  oval(-49,131,9,13,skin,ink);oval(49,130,9,13,skin,ink);path(head,skin);
- if(face){
-  c.save();c.clip(new Path2D(head));const zoom=look.zoom, size=136*zoom;
-  c.drawImage(face,-size/2+look.x,-size/2+121+look.y,size,size);c.restore();line(head,ink,2.3);
- }else{
+
   oval(-30,145,9,4,blush);oval(30,145,9,4,blush);
   const calm=['书','叶','羽扇','茶','花','卷'].includes(prop);
   line('M-33 118q9 -6 17 -2 M14 116q9 -5 16 -1',ink,2.9);
   if(calm){line('M-31 132q7 -6 14 -1 M15 131q7 -6 14 0',ink,2.6)}else{oval(-23,131,3.2,5,ink);oval(21,130,3.2,5,ink);oval(-22,129,1,1,cream);oval(22,128,1,1,cream)}
   line('M0 133l-3 9 5 1','#aa7165',1.7);line('M-9 155q11 7 21 -2','#985a55',2.1);
   if(['纶巾','帝冠','将盔'].includes(hair)){path('M-18 153q10 2 15 -3l3 2q6 -3 14 0l5 5q-12 -4 -18 -2q-10 -2 -19 1Z',dark,null);path('M-10 174q11 5 22 -1q-2 13 -9 17q-8 -5 -13 -16Z',dark)}
- }
- // Hair and hats overlay the forehead, including when a photo is inserted.
+  // Hair and hats overlay the forehead, including when a photo is inserted.
  path('M-49 133 Q-59 106 -52 83 Q-44 52 -13 51 Q18 41 42 65 Q63 82 48 133 L42 110 Q26 103 18 85 Q-1 108 -33 111 L-29 104 Q-43 111 -49 133Z',dark);
  line('M-41 94 Q-27 76 -4 70 M25 68q13 7 18 18','#715953',2);
  if(['丸子','簪花','花冠','士冠','帝冠','布巾'].includes(hair)){oval(-1,55,18,16,dark,ink)}
@@ -288,99 +279,31 @@ function drawEmblem(key,g){
 
 const portraitStudio=(()=>{
  const by=id=>document.getElementById(id), art=by('characterArt');
- const file=by('faceFile'), editor=by('faceEditor'), message=by('portraitStatus'), overlay=by('exportOverlay');
- const preview=by('exportImage'), download=by('downloadCard');
- const sliders=['faceZoom','faceX','faceY'].map(by), [zoom,xPan,yPan]=sliders;
- let model=null, source=null, ticket=0, mode='original', frame=0, locked=false;
- function surface(w,h=w){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
- function cropFace(){
-  if(!source)return null;
-  const side=Math.min(source.width,source.height)/Number(zoom.value);
-  const x=(source.width-side)*(Number(xPan.value)+100)/200,y=(source.height-side)*(Number(yPan.value)+100)/200;
-  const chip=surface(240),ctx=chip.getContext('2d',{willReadFrequently:true});
-  ctx.fillStyle='#f4dbc3';ctx.fillRect(0,0,240,240);
-  ctx.drawImage(source,x,y,side,side,0,0,240,240);
-  if(mode==='styled')inkFace(ctx,model.spec);
-  return chip;
- }
- function inkFace(ctx,spec){
-  const {width:w,height:h}=ctx.canvas, pixels=ctx.getImageData(0,0,w,h), dst=pixels.data,src=new Uint8ClampedArray(dst);
-  const color=parseInt(spec[4],16),accent=[color>>16,(color>>8)&255,color&255];
-  const historical=['汉服','长衫','帝服','甲衣'].includes(spec[0]),night=spec[3]==='夜色';
-  const tones=historical?6:night?7:8,paper=historical?[255,237,207]:night?[230,226,244]:[255,239,225];
-  const luminance=i=>.299*src[i]+.587*src[i+1]+.114*src[i+2];
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-   const i=(y*w+x)*4,L=luminance(i);let total=2,r=src[i]*2,g=src[i+1]*2,b=src[i+2]*2;
-   // Edge-preserving smoothing keeps the subject's facial landmarks readable.
-   for(const [dx,dy] of [[-2,0],[2,0],[0,-2],[0,2]]){
-    const n=(Math.max(0,Math.min(h-1,y+dy))*w+Math.max(0,Math.min(w-1,x+dx)))*4;
-    if(Math.abs(luminance(n)-L)<29){r+=src[n];g+=src[n+1];b+=src[n+2];total++}
-   }
-   r/=total;g/=total;b/=total;
-   const light=.299*r+.587*g+.114*b, band=Math.round(light/255*(tones-1))/(tones-1), tint=band<.5?accent:paper;
-   const right=i+(x<w-1?4:0),down=i+(y<h-1?w*4:0);
-   const edge=Math.min(.60,Math.max(0,(Math.abs(luminance(right)-L)+Math.abs(luminance(down)-L)-24)/100));
-   const tintAmount=historical?.30:.23;
-   [r,g,b].forEach((v,k)=>{const block=band*255+(v-light)*.72;dst[i+k]=(block*(1-tintAmount)+tint[k]*tintAmount)*(1-edge)+[54,48,58][k]*edge});
-   if(model.edition && model.edition.style!=='绢本设色'){
-    const bronze=model.edition.style==='铜版色调', shade=band*(1-edge);
-    const dark=bronze?[40,46,42]:[40,36,29],lightPaper=bronze?[192,195,177]:[249,242,221];
-    for(let k=0;k<3;k++)dst[i+k]=dark[k]+shade*(lightPaper[k]-dark[k]);
-   }
-  }
-  ctx.putImageData(pixels,0,0);
- }
+ const message=by('portraitStatus'), overlay=by('exportOverlay'), preview=by('exportImage'), download=by('downloadCard');
+ let model=null;
+ function surface(w,h){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
  function draw(){
-  frame=0;if(!model)return;
-  if(model.edition){
-   if(!model.edition.image.naturalWidth)return;
-   drawEdition(art,model,cropFace());
-  }else paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
-  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':model.edition?'，历史人物图版':'，专属卡通画像'));
+  if(!model)return;
+  if(model.edition)drawEdition(art,model);
+  else paintCharacter(art,model.spec);
+  art.setAttribute('aria-label',model.name+'，正面半身画像');
  }
- function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
- function setMode(value){mode=value;for(const el of editor.querySelectorAll('[data-face-mode]'))el.setAttribute('aria-pressed',String(el.dataset.faceMode===value));schedule()}
- function resetCrop(){zoom.value='1';xPan.value='0';yPan.value='0'}
  function closeExport(){overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');if(model)by('makeCard').focus({preventScroll:true})}
- function clear(){
-  ticket++;source=null;model=null;locked=false;file.value='';editor.hidden=true;message.textContent='';by('makeCard').disabled=false;overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');
-  if(frame)cancelAnimationFrame(frame);frame=0;
- }
+ function clear(){model=null;closeExport();message.textContent=''}
  function show(data){
-  clear();model=data;resetCrop();mode='original';
-  const ancient=['汉服','长衫','帝服','甲衣'].includes(data.spec[0]);
-  by('styledFace').textContent=ancient?'彩墨画风':data.spec[3]==='夜色'?'夜色版画':'绘本画风';
-  if(data.edition){
-   const edition=data.edition;
-   showCredit(edition);
-   by('styledFace').textContent=edition.style;
-   if(!edition.image.naturalWidth){
+  clear();model=data;
+  const plate=data.edition;
+  by('makeCard').disabled=false;
+  if(plate){
+   showCredit(plate);
+   if(!plate.image.naturalWidth){
     art.getContext('2d').clearRect(0,0,art.width,art.height);by('makeCard').disabled=true;
-    edition.ready.then(ok=>{if(model!==data)return;if(ok){by('makeCard').disabled=locked;draw()}else message.textContent='图版读取失败，请刷新重试。'});
+    plate.ready.then(ok=>{if(model!==data)return;if(ok){draw();by('makeCard').disabled=false}else message.textContent='图版读取失败，请刷新重试。'});
+    return;
    }
   }
   draw();
  }
- file.addEventListener('change',async()=>{
-  const f=file.files[0];if(!f||!model)return;
-  const seq=++ticket;locked=true;by('makeCard').disabled=true;message.textContent='正在读取头像…';
-  const url=URL.createObjectURL(f);
-  try{
-   const img=new Image();
-   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
-   if(seq!==ticket||!model)return;
-   const scale=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));
-   const resized=surface(Math.max(1,Math.round(img.naturalWidth*scale)),Math.max(1,Math.round(img.naturalHeight*scale)));
-   resized.getContext('2d').drawImage(img,0,0,resized.width,resized.height);
-   source=resized;resetCrop();editor.hidden=false;setMode('original');draw();
-   message.textContent='头像已放入画中，可调整取景位置。';
-  }catch{if(seq===ticket)message.textContent='这张图片未能读取，请选择相册中的 JPG、PNG 或 WebP 图片。'}
-  finally{URL.revokeObjectURL(url);if(seq===ticket){file.value='';locked=false;by('makeCard').disabled=false}}
- });
- for(const el of editor.querySelectorAll('[data-face-mode]'))el.onclick=()=>setMode(el.dataset.faceMode);
- sliders.forEach(el=>el.oninput=schedule);
- by('resetPortrait').onclick=()=>{ticket++;source=null;file.value='';editor.hidden=true;locked=false;by('makeCard').disabled=false;message.textContent='已恢复角色画像。';draw()};
- by('chooseFace').onclick=()=>file.click();
  function wrap(ctx,text,width){
   const lines=[];let row='';
   for(const ch of Array.from(text)){if(ch==='\n'){lines.push(row);row='';continue}
@@ -403,7 +326,7 @@ const portraitStudio=(()=>{
   if(model.edition){
    const e=model.edition;
    textBlock(e.title+' · '+e.by,22,32,sans,accent);
-   textBlock('图版局部裁切'+(source?'，合成自选头像':'')+' · '+e.license,20,29,sans,accent);
+   textBlock('AI 正面改绘 · 图源许可 ' + +e.license,20,29,sans,accent);
    textBlock(e.url,17,24,sans,accent);
    if(e.terms)textBlock(e.terms,17,24,sans,accent);
   }
@@ -416,7 +339,7 @@ const portraitStudio=(()=>{
   return card.toDataURL('image/png');
  }
  by('makeCard').onclick=()=>{
-  if(!model||locked||(model.edition&&!model.edition.image.naturalWidth))return;
+  if(!model||(model.edition&&!model.edition.image.naturalWidth))return;
   try{const uri=poster();preview.src=uri;preview.alt=model.name+'完整结果卡';download.href=uri;download.download='性情手册-'+model.name+'.png';
    overlay.hidden=false;by('closeExport').focus({preventScroll:true});}
   catch{message.textContent='长图生成失败，请重试或截屏保存。'}

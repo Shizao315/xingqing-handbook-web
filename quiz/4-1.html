@@ -19,14 +19,9 @@
 <section id="quiz" class="sheet" hidden><div class="line"><span class="sectiontag" id="phase"></span><small id="counter"></small></div><progress class="track" id="progress" aria-label="已答题数" max="40"></progress><h2 id="prompt" tabindex="-1"></h2><div class="choices" id="choices"></div><div class="actions"><button class="quiet" id="back">← 上一题</button><button class="primary" id="next" disabled>下一题 →</button></div></section>
 <section hidden id="handoff" class="sheet"><span class="sectiontag">双人测试 · 换人作答</span><h2>轮到第二位了</h2><p>请把设备交给对方。接下来独立完成同样的 40 题，最后一起拆开报告。</p><button class="primary" id="take">我是第二位，开始作答 →</button></section>
 <section id="result" hidden><article class="card"><div class="sectiontag">你的隐藏天赋测试</div><h2 id="resName" tabindex="-1"></h2><div id="portraitStudio" class="portrait-studio">
- <canvas id="characterArt" width="960" height="600" role="img" aria-label="专属卡通画像"></canvas>
- <div class="portrait-actions"><button type="button" id="chooseFace">换成我的头像</button><button type="button" id="makeCard">保存结果卡 ↓</button></div>
- <input type="file" id="faceFile" accept="image/*" hidden>
- <div id="faceEditor" hidden>
-  <div class="face-modes" role="group" aria-label="头像画风"><button type="button" data-face-mode="original" aria-pressed="true">头像原图</button><button type="button" data-face-mode="styled" id="styledFace" aria-pressed="false">绘本画风</button><button type="button" id="resetPortrait">恢复角色</button></div>
-  <div class="crop-controls"><label>缩放<input id="faceZoom" type="range" min="1" max="3.5" step=".05" value="1"></label><label>左右<input id="faceX" type="range" min="-100" max="100" value="0"></label><label>上下<input id="faceY" type="range" min="-100" max="100" value="0"></label></div>
- </div>
- <div class="portrait-note">相册图片仅在此设备上处理。<span id="portraitStatus" role="status"></span></div>
+ <canvas id="characterArt" width="960" height="600" role="img" aria-label="正面人物画像"></canvas>
+ <div class="portrait-actions"><button type="button" id="makeCard">保存结果卡 ↓</button></div>
+ <div id="portraitStatus" role="status"></div>
 </div>
 <h3 id="quote"></h3><div id="details"></div><div class="signature"><span>性情手册 · 人格天赋类</span><span>趣味结果签</span></div></article><div class="actions outside"><button id="restart" class="primary">重新测试 ↻</button></div></section></main><footer><span>性情手册 · 趣味测试集</span><span>仅供娱乐与自我观察</span></footer></div><script>const TEST={"title": "你的隐藏天赋测试", "desc": "看看哪些你随手就能做好的事，在别人眼里其实很难。", "profiles": [["规律侦探", "识别规律", "别人说碰巧，你已经注意到第三次。", "你能较早发现值得验证的模式。", "你的私人档案夹叫“等等，这个见过”。"], ["人话翻译官", "解释", "复杂的事经你一讲，就有了门把手。", "你会根据听者已有的知识搭台阶。", "说明书最后一页应该给你留个署名。"], ["资源牵线人", "媒合", "你的通讯录里，总有两条线可以相接。", "你能发现不同人的长处怎样互补。", "你的常用句大概是“你俩应该认识一下”。"], ["临场改编家", "即兴", "少了一个道具，你就多出一种演法。", "局势突然变化时你仍能维持行动。", "你的备用方案有时比原方案更受欢迎。"]], "questions": [{"text": "桌游新人总在同一处犯错，你会？", "options": [{"label": "找一位玩法互补的搭档", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "演示一轮给他看", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "临时改个练习玩法", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "找出共同的误判点", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "雨天活动取消，现场最需要你做什么？", "options": [{"label": "向来客讲清改动", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "用现有材料开个新游戏", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "分析哪些环节还能用", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "联系能借室内场地的人", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "小孩没听懂一道题，你会？", "options": [{"label": "用积木现编一道类似题", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "找出他在哪一步卡住", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "请擅长画图的朋友加入", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "用分点心举例", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "朋友发来一张乱糟糟的日程表，你先？", "options": [{"label": "圈出冲突重复的位置", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "找可交换时段的人", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "说清最难读懂的几行", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "试排一个新顺序", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "第一次进排练室，你想贡献？", "options": [{"label": "给新人拆动作", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "临时补一段过场", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "听出哪里总慢半拍", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "让不同声部互相认识", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "夜市卖同款饼的摊位排队差很多，你会？", "options": [{"label": "想个现场试吃玩法", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "观察人流和出摊时段", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "把摊主介绍给美食博主", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "给朋友讲明两种做法", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "看一组旅行照片，你能帮朋友做什么？", "options": [{"label": "按拍摄习惯找出遗漏", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "联系去过那里的熟人", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "写易懂的路线说明", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "用照片讲个意想不到的故事", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "公司来了新机器，你先试？", "options": [{"label": "找最熟悉旧机器的人交流", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "做一张三步操作卡", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "试一个手边材料的新用途", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "记录几次输出是否一致", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "小区闲置物很多，你会？", "options": [{"label": "写简明交换指南", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "让需要的人直接对接", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "办个限时盲换摊", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "归类哪些需求最常见", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "课件临时打不开，你怎么救场？", "options": [{"label": "联系备份资料的同学", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "拿桌上物品直接演示", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "找还能读出的文件规律", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "口头把重点分三段讲", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "朋友展示新做的饼干，你关注？", "options": [{"label": "碎掉的几块能拼成什么", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "哪批形状和火候一致", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "步骤怎样讲给初学者", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "谁的咖啡店可能用得上", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "听完居民对噪声的抱怨，你想？", "options": [{"label": "记录地点和发生时段", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "画图解释传播路线", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "撮合楼上楼下商量", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "试用手边软垫减少震动", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "组队拼图一直卡住，你做什么？", "options": [{"label": "换种拼法从中心开始", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "讲解怎样看接口", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "按纹理找相似边角", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "把合适的拼片传给各组", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "学校募捐剩好多旧布，你会？", "options": [{"label": "做布料再用演示", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "统计可用尺寸和用途", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "介绍给附近手工社", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "即兴拼个舞台背景", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "轮到你介绍一道家乡菜，你选？", "options": [{"label": "比较几家配方的共同点", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "请家里会做的人来连线", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "用现场食材改一道简版", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "用熟悉味道解释口感", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "社区球赛反复延迟，你会？", "options": [{"label": "找有空的替补裁判", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "改成短局赛试一轮", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "做张看得懂的赛程图", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "对照哪几个时段总超时", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "同伴觉得博物馆看不懂，你会？", "options": [{"label": "挑一件展品讲个入门例子", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "找熟悉此类展品的人同行", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "一起玩猜用途小游戏", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "带他找反复出现的图案", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "家人换手机不习惯，你会？", "options": [{"label": "介绍给会用同型号的邻居", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "临时做个大图标桌面", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "找出每次误触的共同位置", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "录一段按步骤的演示", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "群里几个人都在学做饭，你会？", "options": [{"label": "出一个冰箱剩菜挑战", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "整理他们最常失败的步骤", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "做一份新手看得懂的食谱", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "撮合擅长配菜和烘焙的人", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "组织野餐却少了盘子，你会？", "options": [{"label": "估算现有容器怎么分装", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "说明哪些食物可以直接分食", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "问邻组能否交换用品", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "把包装纸折成临时托盘", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "旧广播录音里有人声断断续续，你会？", "options": [{"label": "标出杂音出现的间隔", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "找熟悉维修的朋友听听", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "把能听清的内容转述出来", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "剪成一段创意节奏", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "给同事看一份复杂报表，你帮哪步？", "options": [{"label": "找到能解释异常的人", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "画一张易懂的说明图", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "临时改个角度重新展示", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "揪出异常波动", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "邻居的小店要办首场活动，你做？", "options": [{"label": "写清参加方法", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "发明个入场小挑战", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "观察什么时间人最集中", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "牵线附近互补的店家", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "玩寻宝游戏拿到半张地图，你会？", "options": [{"label": "用影子的方向现场猜路线", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "研究残图上的重复符号", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "找到另一支持图队伍", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "把看懂的部分讲给全队", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "同学会有人没接到通知，你想？", "options": [{"label": "用语音快速补一轮通知", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "请不同班级联系人互通", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "把通知改成一眼能读的格式", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "找出漏发者的共同情况", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "友人想把书卖给合适的人，你会？", "options": [{"label": "找到可能想读的朋友", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "写几句好懂的内容简介", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "按主题和受众分组", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "做个随机试读摊位", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "演出散场时观众走错门，你会？", "options": [{"label": "重新写简短指引", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "观察哪块路标总被忽略", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "用椅子摆出临时通道", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "让各出口志愿者互通", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "临时带一群孩子认识树叶，你会？", "options": [{"label": "比较叶缘和叶脉", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "把落叶拼成动物", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "邀请园丁来一起讲", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "拿手掌比喻叶片结构", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "坐车发现几处街名很相似，你想？", "options": [{"label": "画小图解释差别", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "找共同的命名规律", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "编个随车猜街名游戏", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "问熟悉当地的朋友", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "玩拍照接力时，你最能帮团队？", "options": [{"label": "辨认成片反复出现的问题", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "把失焦照片变成新主题", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "给会拍和会摆姿势的人配对", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "讲明怎么调整取景", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "要缩短餐厅等位时间，你会？", "options": [{"label": "试用临时拼桌办法", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "让厨房和前台同步消息", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "给客人讲清取号流程", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "记下哪几桌翻台最慢", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "朋友想学一门自己不会的技能，你会？", "options": [{"label": "介绍一位合适老师", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "把课程大纲翻成通俗小步", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "帮他比较常见入门路线", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "临时发起一天体验挑战", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "露天市集摊位风格太杂，你想？", "options": [{"label": "写一份简单逛摊指南", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "把互补摊主安排在一起", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "找出自然形成的几个主题", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "发明集章串摊玩法", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "第一次用陌生乐器，你想？", "options": [{"label": "找会伴奏的人一起玩", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "听出不同键位的规律", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "用几个音即兴编旋律", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "琢磨怎么向别人解释发音", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "团队只剩白纸和胶带，你会？", "options": [{"label": "测试不同折法能承多少重", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "当场搭个纸桥出来", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "做一张步骤示意", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "找隔壁组交换材料", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "收到一堆居民故事录音，你做？", "options": [{"label": "用录音做条声音散步路", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "剪出容易听懂的导言", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "介绍故事主人公互相认识", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "标出反复被提到的地点", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}, {"text": "新同学说兴趣很多不知先试什么，你会？", "options": [{"label": "当场设计一个十分钟小试验", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "解释几种体验的实际差别", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "找兴趣之间的共同线索", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "介绍他认识两个社团的人", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}]}, {"text": "收到一组错误拼写的路标，你会？", "options": [{"label": "写给游客一份清楚更正", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "看看是否有相同错法", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "联系制牌和导览的两边", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "先用贴纸做临时改版", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}]}, {"text": "好友准备第一次摆摊，你主动送上？", "options": [{"label": "以前几场的人流观察", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}, {"label": "能提供物料的熟人名单", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "一个出乎意料的展示道具", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "一份入门要点卡", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}]}, {"text": "活动结束只剩十分钟复盘，你愿说？", "options": [{"label": "这两组人以后可以合作", "points": {"识别规律": 0, "解释": 0, "媒合": 2, "即兴": 0}}, {"label": "下次不妨换一种玩法", "points": {"识别规律": 0, "解释": 0, "媒合": 0, "即兴": 2}}, {"label": "我能把最难的一步讲清楚", "points": {"识别规律": 0, "解释": 2, "媒合": 0, "即兴": 0}}, {"label": "我发现了一个重复出现的现象", "points": {"识别规律": 2, "解释": 0, "媒合": 0, "即兴": 0}}]}], "axes": ["识别规律", "解释", "媒合", "即兴"], "mode": "分型"};</script><script>const Q=TEST.questions, dims=TEST.axes, isPair=TEST.title==='情侣适配度测试';
 const $=s=>document.getElementById(s);
@@ -153,7 +148,7 @@ document.querySelectorAll('canvas[data-plate]').forEach(cv=>new ResizeObserver((
  <a id="downloadCard" download>下载 PNG 图片 ↓</a></div>
 </div>
 <script>const portraitSpecs={"规律侦探": ["风衣", "旅行帽", "放大镜", "都会", "778574"], "人话翻译官": ["针织", "短卷", "书", "街巷", "b18d56"], "资源牵线人": ["夹克", "丸子", "线轴", "都会", "628c94"], "临场改编家": ["条纹", "贝雷", "面具", "花园", "b76e65"]};
-function paintCharacter(canvas,spec,face,look){
+function paintCharacter(canvas,spec){
  const [outfit,hair,prop,scene,hex]=spec,coat='#'+hex;
  const W=480,H=300,ink='#382f37',cream='#fff2d4',gold='#e7b75c',skin='#f4c7a3',blush='#de9d8d';
  const c=canvas.getContext('2d');c.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);c.lineJoin='round';c.lineCap='round';
@@ -196,18 +191,14 @@ function paintCharacter(canvas,spec,face,look){
  line('M-76 223 Q-66 239 -65 260 M83 229 Q70 246 68 267',ink,1.6);
  const head='M-50 115 Q-53 77 -21 63 Q14 48 41 74 Q56 90 49 130 Q45 157 25 173 Q12 185 -4 182 Q-32 178 -45 153 Q-51 142 -50 115Z';
  oval(-49,131,9,13,skin,ink);oval(49,130,9,13,skin,ink);path(head,skin);
- if(face){
-  c.save();c.clip(new Path2D(head));const zoom=look.zoom, size=136*zoom;
-  c.drawImage(face,-size/2+look.x,-size/2+121+look.y,size,size);c.restore();line(head,ink,2.3);
- }else{
+
   oval(-30,145,9,4,blush);oval(30,145,9,4,blush);
   const calm=['书','叶','羽扇','茶','花','卷'].includes(prop);
   line('M-33 118q9 -6 17 -2 M14 116q9 -5 16 -1',ink,2.9);
   if(calm){line('M-31 132q7 -6 14 -1 M15 131q7 -6 14 0',ink,2.6)}else{oval(-23,131,3.2,5,ink);oval(21,130,3.2,5,ink);oval(-22,129,1,1,cream);oval(22,128,1,1,cream)}
   line('M0 133l-3 9 5 1','#aa7165',1.7);line('M-9 155q11 7 21 -2','#985a55',2.1);
   if(['纶巾','帝冠','将盔'].includes(hair)){path('M-18 153q10 2 15 -3l3 2q6 -3 14 0l5 5q-12 -4 -18 -2q-10 -2 -19 1Z',dark,null);path('M-10 174q11 5 22 -1q-2 13 -9 17q-8 -5 -13 -16Z',dark)}
- }
- // Hair and hats overlay the forehead, including when a photo is inserted.
+  // Hair and hats overlay the forehead, including when a photo is inserted.
  path('M-49 133 Q-59 106 -52 83 Q-44 52 -13 51 Q18 41 42 65 Q63 82 48 133 L42 110 Q26 103 18 85 Q-1 108 -33 111 L-29 104 Q-43 111 -49 133Z',dark);
  line('M-41 94 Q-27 76 -4 70 M25 68q13 7 18 18','#715953',2);
  if(['丸子','簪花','花冠','士冠','帝冠','布巾'].includes(hair)){oval(-1,55,18,16,dark,ink)}
@@ -288,99 +279,31 @@ function drawEmblem(key,g){
 
 const portraitStudio=(()=>{
  const by=id=>document.getElementById(id), art=by('characterArt');
- const file=by('faceFile'), editor=by('faceEditor'), message=by('portraitStatus'), overlay=by('exportOverlay');
- const preview=by('exportImage'), download=by('downloadCard');
- const sliders=['faceZoom','faceX','faceY'].map(by), [zoom,xPan,yPan]=sliders;
- let model=null, source=null, ticket=0, mode='original', frame=0, locked=false;
- function surface(w,h=w){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
- function cropFace(){
-  if(!source)return null;
-  const side=Math.min(source.width,source.height)/Number(zoom.value);
-  const x=(source.width-side)*(Number(xPan.value)+100)/200,y=(source.height-side)*(Number(yPan.value)+100)/200;
-  const chip=surface(240),ctx=chip.getContext('2d',{willReadFrequently:true});
-  ctx.fillStyle='#f4dbc3';ctx.fillRect(0,0,240,240);
-  ctx.drawImage(source,x,y,side,side,0,0,240,240);
-  if(mode==='styled')inkFace(ctx,model.spec);
-  return chip;
- }
- function inkFace(ctx,spec){
-  const {width:w,height:h}=ctx.canvas, pixels=ctx.getImageData(0,0,w,h), dst=pixels.data,src=new Uint8ClampedArray(dst);
-  const color=parseInt(spec[4],16),accent=[color>>16,(color>>8)&255,color&255];
-  const historical=['汉服','长衫','帝服','甲衣'].includes(spec[0]),night=spec[3]==='夜色';
-  const tones=historical?6:night?7:8,paper=historical?[255,237,207]:night?[230,226,244]:[255,239,225];
-  const luminance=i=>.299*src[i]+.587*src[i+1]+.114*src[i+2];
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-   const i=(y*w+x)*4,L=luminance(i);let total=2,r=src[i]*2,g=src[i+1]*2,b=src[i+2]*2;
-   // Edge-preserving smoothing keeps the subject's facial landmarks readable.
-   for(const [dx,dy] of [[-2,0],[2,0],[0,-2],[0,2]]){
-    const n=(Math.max(0,Math.min(h-1,y+dy))*w+Math.max(0,Math.min(w-1,x+dx)))*4;
-    if(Math.abs(luminance(n)-L)<29){r+=src[n];g+=src[n+1];b+=src[n+2];total++}
-   }
-   r/=total;g/=total;b/=total;
-   const light=.299*r+.587*g+.114*b, band=Math.round(light/255*(tones-1))/(tones-1), tint=band<.5?accent:paper;
-   const right=i+(x<w-1?4:0),down=i+(y<h-1?w*4:0);
-   const edge=Math.min(.60,Math.max(0,(Math.abs(luminance(right)-L)+Math.abs(luminance(down)-L)-24)/100));
-   const tintAmount=historical?.30:.23;
-   [r,g,b].forEach((v,k)=>{const block=band*255+(v-light)*.72;dst[i+k]=(block*(1-tintAmount)+tint[k]*tintAmount)*(1-edge)+[54,48,58][k]*edge});
-   if(model.edition && model.edition.style!=='绢本设色'){
-    const bronze=model.edition.style==='铜版色调', shade=band*(1-edge);
-    const dark=bronze?[40,46,42]:[40,36,29],lightPaper=bronze?[192,195,177]:[249,242,221];
-    for(let k=0;k<3;k++)dst[i+k]=dark[k]+shade*(lightPaper[k]-dark[k]);
-   }
-  }
-  ctx.putImageData(pixels,0,0);
- }
+ const message=by('portraitStatus'), overlay=by('exportOverlay'), preview=by('exportImage'), download=by('downloadCard');
+ let model=null;
+ function surface(w,h){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
  function draw(){
-  frame=0;if(!model)return;
-  if(model.edition){
-   if(!model.edition.image.naturalWidth)return;
-   drawEdition(art,model,cropFace());
-  }else paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
-  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':model.edition?'，历史人物图版':'，专属卡通画像'));
+  if(!model)return;
+  if(model.edition)drawEdition(art,model);
+  else paintCharacter(art,model.spec);
+  art.setAttribute('aria-label',model.name+'，正面半身画像');
  }
- function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
- function setMode(value){mode=value;for(const el of editor.querySelectorAll('[data-face-mode]'))el.setAttribute('aria-pressed',String(el.dataset.faceMode===value));schedule()}
- function resetCrop(){zoom.value='1';xPan.value='0';yPan.value='0'}
  function closeExport(){overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');if(model)by('makeCard').focus({preventScroll:true})}
- function clear(){
-  ticket++;source=null;model=null;locked=false;file.value='';editor.hidden=true;message.textContent='';by('makeCard').disabled=false;overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');
-  if(frame)cancelAnimationFrame(frame);frame=0;
- }
+ function clear(){model=null;closeExport();message.textContent=''}
  function show(data){
-  clear();model=data;resetCrop();mode='original';
-  const ancient=['汉服','长衫','帝服','甲衣'].includes(data.spec[0]);
-  by('styledFace').textContent=ancient?'彩墨画风':data.spec[3]==='夜色'?'夜色版画':'绘本画风';
-  if(data.edition){
-   const edition=data.edition;
-   showCredit(edition);
-   by('styledFace').textContent=edition.style;
-   if(!edition.image.naturalWidth){
+  clear();model=data;
+  const plate=data.edition;
+  by('makeCard').disabled=false;
+  if(plate){
+   showCredit(plate);
+   if(!plate.image.naturalWidth){
     art.getContext('2d').clearRect(0,0,art.width,art.height);by('makeCard').disabled=true;
-    edition.ready.then(ok=>{if(model!==data)return;if(ok){by('makeCard').disabled=locked;draw()}else message.textContent='图版读取失败，请刷新重试。'});
+    plate.ready.then(ok=>{if(model!==data)return;if(ok){draw();by('makeCard').disabled=false}else message.textContent='图版读取失败，请刷新重试。'});
+    return;
    }
   }
   draw();
  }
- file.addEventListener('change',async()=>{
-  const f=file.files[0];if(!f||!model)return;
-  const seq=++ticket;locked=true;by('makeCard').disabled=true;message.textContent='正在读取头像…';
-  const url=URL.createObjectURL(f);
-  try{
-   const img=new Image();
-   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
-   if(seq!==ticket||!model)return;
-   const scale=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));
-   const resized=surface(Math.max(1,Math.round(img.naturalWidth*scale)),Math.max(1,Math.round(img.naturalHeight*scale)));
-   resized.getContext('2d').drawImage(img,0,0,resized.width,resized.height);
-   source=resized;resetCrop();editor.hidden=false;setMode('original');draw();
-   message.textContent='头像已放入画中，可调整取景位置。';
-  }catch{if(seq===ticket)message.textContent='这张图片未能读取，请选择相册中的 JPG、PNG 或 WebP 图片。'}
-  finally{URL.revokeObjectURL(url);if(seq===ticket){file.value='';locked=false;by('makeCard').disabled=false}}
- });
- for(const el of editor.querySelectorAll('[data-face-mode]'))el.onclick=()=>setMode(el.dataset.faceMode);
- sliders.forEach(el=>el.oninput=schedule);
- by('resetPortrait').onclick=()=>{ticket++;source=null;file.value='';editor.hidden=true;locked=false;by('makeCard').disabled=false;message.textContent='已恢复角色画像。';draw()};
- by('chooseFace').onclick=()=>file.click();
  function wrap(ctx,text,width){
   const lines=[];let row='';
   for(const ch of Array.from(text)){if(ch==='\n'){lines.push(row);row='';continue}
@@ -403,7 +326,7 @@ const portraitStudio=(()=>{
   if(model.edition){
    const e=model.edition;
    textBlock(e.title+' · '+e.by,22,32,sans,accent);
-   textBlock('图版局部裁切'+(source?'，合成自选头像':'')+' · '+e.license,20,29,sans,accent);
+   textBlock('AI 正面改绘 · 图源许可 ' + +e.license,20,29,sans,accent);
    textBlock(e.url,17,24,sans,accent);
    if(e.terms)textBlock(e.terms,17,24,sans,accent);
   }
@@ -416,7 +339,7 @@ const portraitStudio=(()=>{
   return card.toDataURL('image/png');
  }
  by('makeCard').onclick=()=>{
-  if(!model||locked||(model.edition&&!model.edition.image.naturalWidth))return;
+  if(!model||(model.edition&&!model.edition.image.naturalWidth))return;
   try{const uri=poster();preview.src=uri;preview.alt=model.name+'完整结果卡';download.href=uri;download.download='性情手册-'+model.name+'.png';
    overlay.hidden=false;by('closeExport').focus({preventScroll:true});}
   catch{message.textContent='长图生成失败，请重试或截屏保存。'}

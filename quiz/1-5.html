@@ -19,14 +19,9 @@
 <section id="quiz" class="sheet" hidden><div class="line"><span class="sectiontag" id="phase"></span><small id="counter"></small></div><progress class="track" id="progress" aria-label="已答题数" max="40"></progress><h2 id="prompt" tabindex="-1"></h2><div class="choices" id="choices"></div><div class="actions"><button class="quiet" id="back">← 上一题</button><button class="primary" id="next" disabled>下一题 →</button></div></section>
 <section hidden id="handoff" class="sheet"><span class="sectiontag">双人测试 · 换人作答</span><h2>轮到第二位了</h2><p>请把设备交给对方。接下来独立完成同样的 40 题，最后一起拆开报告。</p><button class="primary" id="take">我是第二位，开始作答 →</button></section>
 <section id="result" hidden><article class="card"><div class="sectiontag">哪座城市和你的气质天生相合</div><h2 id="resName" tabindex="-1"></h2><div id="portraitStudio" class="portrait-studio">
- <canvas id="characterArt" width="960" height="600" role="img" aria-label="专属卡通画像"></canvas>
- <div class="portrait-actions"><button type="button" id="chooseFace">换成我的头像</button><button type="button" id="makeCard">保存结果卡 ↓</button></div>
- <input type="file" id="faceFile" accept="image/*" hidden>
- <div id="faceEditor" hidden>
-  <div class="face-modes" role="group" aria-label="头像画风"><button type="button" data-face-mode="original" aria-pressed="true">头像原图</button><button type="button" data-face-mode="styled" id="styledFace" aria-pressed="false">绘本画风</button><button type="button" id="resetPortrait">恢复角色</button></div>
-  <div class="crop-controls"><label>缩放<input id="faceZoom" type="range" min="1" max="3.5" step=".05" value="1"></label><label>左右<input id="faceX" type="range" min="-100" max="100" value="0"></label><label>上下<input id="faceY" type="range" min="-100" max="100" value="0"></label></div>
- </div>
- <div class="portrait-note">相册图片仅在此设备上处理。<span id="portraitStatus" role="status"></span></div>
+ <canvas id="characterArt" width="960" height="600" role="img" aria-label="正面人物画像"></canvas>
+ <div class="portrait-actions"><button type="button" id="makeCard">保存结果卡 ↓</button></div>
+ <div id="portraitStatus" role="status"></div>
 </div>
 <h3 id="quote"></h3><div id="details"></div><div class="signature"><span>性情手册 · 城市类</span><span>趣味结果签</span></div></article><div class="actions outside"><button id="restart" class="primary">重新测试 ↻</button></div></section></main><footer><span>性情手册 · 趣味测试集</span><span>仅供娱乐与自我观察</span></footer></div><script>const TEST={"title": "哪座城市和你的气质天生相合", "desc": "把衣着、审美和说话方式放进一张城市肖像。", "profiles": [["上海", "摩登剪裁", "把多余的一笔留白，你就出现了。", "你很会把复杂的东西收拾得清楚好看。", "你的城市头像会是一道干净的楼影。"], ["南京", "古巷文气", "你的气质，像一本有人写过批注的书。", "你能给普通物件找回时间的厚度。", "你家的钥匙扣可能比钥匙更有故事。"], ["重庆", "山城锋芒", "转过弯，你的颜色还留在街口。", "你能在沉闷的现场迅速点起能量。", "你的配色盘会有一个名字叫“再大胆点”。"], ["厦门", "海岛松弛", "风从你身边过，连时间都慢半拍。", "你会给身边的人一种可以慢慢来的宽裕感。", "你的随身歌单可能有一首叫“先别赶路”。"]], "questions": [{"text": "街拍前选一件外套，你拿哪件？", "options": [{"label": "有盘扣的旧衫", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "宽松的亚麻衬衫", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "利落的黑西装", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "亮红的短夹克", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "给自己的头像找背景，你站在哪儿？", "options": [{"label": "海风里的白墙边", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "玻璃幕墙前", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "鲜红的坡道扶栏旁", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "斑驳的书院门边", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "路过四扇橱窗，你推开哪扇门？", "options": [{"label": "几何陈列的设计店", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "鼓点响亮的地下唱片店", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "旧书修补铺", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "开着窗的沙滩小馆", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "好友来拍你的房间，你想让镜头带到？", "options": [{"label": "一张色彩强烈的海报", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "旧信与石砚", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "风吹动的薄帘", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "干净笔直的桌面", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "出门拍一组人像，你怎么定动作？", "options": [{"label": "捧书坐在长廊里", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "光脚坐在木地板上", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "靠在直线墙角侧身站", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "从台阶上一跃而下", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "挑日程本，你会选？", "options": [{"label": "可以随手卷起的软本", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "细黑线的硬壳本", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "撞色封面的速写本", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "仿古笺纸的线装本", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "给新作品挑字形，你偏爱？", "options": [{"label": "间距清晰的方正字", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "倾斜有力的粗笔字", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "有墨色变化的手写字", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "轻轻松松的圆体字", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "周末穿搭最后配什么？", "options": [{"label": "一条明亮的头巾", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "一枚旧玉扣", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "一只编织小包", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "一块窄表盘", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "想录一段专属铃声，你选？", "options": [{"label": "山路上明快的鼓点", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "风里清浅的浪声", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "翻书和落笔声", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "清脆的电车提示音", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "朋友要给你画肖像，你想用？", "options": [{"label": "湿润水彩", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "淡墨细笔", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "单色直线", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "大块重彩", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "换一盏台灯，你挑？", "options": [{"label": "带旧纹样的布罩灯", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "细长金属阅读灯", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "大红摇臂射灯", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "藤编暖色吊灯", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "拍下今天最满意的一餐，你怎么拍？", "options": [{"label": "俯拍餐盘的几何构图", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "近拍热油泼下的瞬间", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "把窗外蓝天也收入画面", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "拍碗沿和桌上的字条", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "给工作桌选椅子，你搬来？", "options": [{"label": "鲜黄色高脚凳", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "黑色金属折线椅", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "软藤摇椅", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "老木书桌椅", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "有人送你一块空画布，你先画？", "options": [{"label": "一组垂直街线", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "渐渐散开的浅蓝海浪", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "老门上的岁月痕迹", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "穿楼而过的红色台阶", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "去新咖啡馆见人，你想坐哪桌？", "options": [{"label": "通风露台上", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "叠着旧杂志的木桌", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "亮色涂鸦墙前", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "冷色石台旁", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "临时要拍一段自我介绍，你会在哪里开机？", "options": [{"label": "安静的碑廊", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "烟火升腾的街口", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "整齐的城市天桥", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "靠海的长椅", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "买张海报贴墙，你选哪幅？", "options": [{"label": "火红的现场演出照", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "极简建筑剖面", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "浅蓝的岸边速写", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "旧城地图拓印", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "要给手机配个壳，你会拿？", "options": [{"label": "纯黑磨砂款", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "半透明海玻璃色", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "复古印章纹样", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "橘紫撞色款", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "办个人小展，你想怎么布置入口？", "options": [{"label": "掀开一层轻薄门帘", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "挂一幅手写门签", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "刷上整面的红色箭头", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "一行排得很齐的标题", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "别人问你今晚想怎么过，你挑？", "options": [{"label": "在老巷听一段评话", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "去小场地听摇滚", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "看一场当代设计放映", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "到海边小院坐到天黑", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "挑一枚胸针，你会别上？", "options": [{"label": "小小的古书形状", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "白色小贝壳", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "亮红闪电", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "银色细方框", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "给照片配一句话，你怎么写？", "options": [{"label": "写下今天的风很舒服", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "写一句响亮的现场感叹", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "写一句精确的地点和时间", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "借一段旧诗里的意象", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "咖啡洒在白纸上，你会把污渍改成？", "options": [{"label": "爆炸状的漫画气泡", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "边界分明的色块", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "古地图上的山形", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "慢慢晕开的一朵云", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "朋友做了四条散步歌单，你点开？", "options": [{"label": "节奏干净的电子乐", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "清清浅浅的弦乐", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "海风里的木吉他", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "贝斯突出的现场录音", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "给自己的房门换牌子，你选？", "options": [{"label": "旧木上手写的小楷", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "细线雕刻的金属牌", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "大号撞色贴纸", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "用麻绳挂一块漂流木", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "要设计明天的聚会邀请，你选什么纸？", "options": [{"label": "白色厚卡", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "饱和色荧光纸", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "带草叶的再生纸", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "淡米色竹纹纸", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "逛集市买只杯子，你端起？", "options": [{"label": "亮橙色的大搪瓷杯", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "淡绿玻璃杯", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "印着旧城图的瓷杯", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "棱角清楚的黑陶杯", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "选一条横幅当屏保，你会拍？", "options": [{"label": "海边垂下来的树影", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "长街尽头的老城门", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "整齐重复的高楼窗格", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "山坡上叠起的霓虹", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "桌上有四种花材，你插哪种？", "options": [{"label": "线条硬朗的枝叶", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "一枝带小蕾的梅", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "浓艳的大丽花", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "松散的一把野花", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "路过照相馆，哪张样片让你进门？", "options": [{"label": "旧街里的慢快门", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "红蓝撞光的动态照", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "海边散步的抓拍", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "光影锐利的黑白棚拍", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "给朋友挑一个与你有关的纪念物，你选？", "options": [{"label": "跳色的演出票根", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "被海水磨圆的小石头", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "窄边金属书签", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "手抄的一首短诗", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "长假只带一双鞋，你装进箱子？", "options": [{"label": "软底帆布鞋", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "清爽的皮鞋", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "素面的布鞋", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "抢眼的高帮鞋", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "新书封面由你定稿，你会留？", "options": [{"label": "细细的古建筑线稿", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "边缘模糊的水彩海岸", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "大片白底和一个线框", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "劈开画面的斜色块", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "给阳台添装饰，你会挂？", "options": [{"label": "随风摆动的贝壳铃", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "一条笔直的黑色灯轨", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "反光的彩色金属牌", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "一幅窄窄的竹帘", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "过生日想在哪儿开香槟？", "options": [{"label": "线条简洁的屋顶平台", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "墙画鲜艳的排练房", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "挂灯笼的旧宅小院", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "可以望海的木露台", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}, {"text": "挑一块拍照背景布，你选？", "options": [{"label": "大块红蓝拼布", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "带旧印纹的棉麻", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "透光的浅米纱", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "平整的深灰布", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "周末做手工，你想带回哪个成品？", "options": [{"label": "极简皮卡套", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "木刻藏书印", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "松松的草编帽", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "亮漆滑板贴", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}]}, {"text": "朋友把你拍进短片，你想如何出场？", "options": [{"label": "推开老书店的木门", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "从海风吹开的纱帘后探头", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "踩着鼓点冲下长阶", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "电梯门开，整装走出", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "选一个颜色做自己的名片，你会怎么印？", "options": [{"label": "浅蓝混一点沙色", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}, {"label": "朱红撞亮橘", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "黑字搭配冷银边", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "黛色配米黄底", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}]}, {"text": "一天收尾，你愿意把哪件外套挂在门口？", "options": [{"label": "油彩斑驳的牛仔夹克", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 2, "海岛松弛": 0}}, {"label": "剪裁笔挺的长风衣", "points": {"摩登剪裁": 2, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "绣着暗纹的棉外褂", "points": {"摩登剪裁": 0, "古巷文气": 2, "山城锋芒": 0, "海岛松弛": 0}}, {"label": "被海风吹软的薄罩衫", "points": {"摩登剪裁": 0, "古巷文气": 0, "山城锋芒": 0, "海岛松弛": 2}}]}], "axes": ["摩登剪裁", "古巷文气", "山城锋芒", "海岛松弛"], "mode": "分型"};</script><script>const Q=TEST.questions, dims=TEST.axes, isPair=TEST.title==='情侣适配度测试';
 const $=s=>document.getElementById(s);
@@ -153,7 +148,7 @@ document.querySelectorAll('canvas[data-plate]').forEach(cv=>new ResizeObserver((
  <a id="downloadCard" download>下载 PNG 图片 ↓</a></div>
 </div>
 <script>const portraitSpecs={"上海": ["风衣", "短发", "相机", "都会", "55687e"], "南京": ["长衫", "丸子", "书", "街巷", "748366"], "重庆": ["夹克", "头带", "鼓", "街巷", "c05444"], "厦门": ["条纹", "草帽", "贝壳", "水岸", "5c9a98"]};
-function paintCharacter(canvas,spec,face,look){
+function paintCharacter(canvas,spec){
  const [outfit,hair,prop,scene,hex]=spec,coat='#'+hex;
  const W=480,H=300,ink='#382f37',cream='#fff2d4',gold='#e7b75c',skin='#f4c7a3',blush='#de9d8d';
  const c=canvas.getContext('2d');c.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);c.lineJoin='round';c.lineCap='round';
@@ -196,18 +191,14 @@ function paintCharacter(canvas,spec,face,look){
  line('M-76 223 Q-66 239 -65 260 M83 229 Q70 246 68 267',ink,1.6);
  const head='M-50 115 Q-53 77 -21 63 Q14 48 41 74 Q56 90 49 130 Q45 157 25 173 Q12 185 -4 182 Q-32 178 -45 153 Q-51 142 -50 115Z';
  oval(-49,131,9,13,skin,ink);oval(49,130,9,13,skin,ink);path(head,skin);
- if(face){
-  c.save();c.clip(new Path2D(head));const zoom=look.zoom, size=136*zoom;
-  c.drawImage(face,-size/2+look.x,-size/2+121+look.y,size,size);c.restore();line(head,ink,2.3);
- }else{
+
   oval(-30,145,9,4,blush);oval(30,145,9,4,blush);
   const calm=['书','叶','羽扇','茶','花','卷'].includes(prop);
   line('M-33 118q9 -6 17 -2 M14 116q9 -5 16 -1',ink,2.9);
   if(calm){line('M-31 132q7 -6 14 -1 M15 131q7 -6 14 0',ink,2.6)}else{oval(-23,131,3.2,5,ink);oval(21,130,3.2,5,ink);oval(-22,129,1,1,cream);oval(22,128,1,1,cream)}
   line('M0 133l-3 9 5 1','#aa7165',1.7);line('M-9 155q11 7 21 -2','#985a55',2.1);
   if(['纶巾','帝冠','将盔'].includes(hair)){path('M-18 153q10 2 15 -3l3 2q6 -3 14 0l5 5q-12 -4 -18 -2q-10 -2 -19 1Z',dark,null);path('M-10 174q11 5 22 -1q-2 13 -9 17q-8 -5 -13 -16Z',dark)}
- }
- // Hair and hats overlay the forehead, including when a photo is inserted.
+  // Hair and hats overlay the forehead, including when a photo is inserted.
  path('M-49 133 Q-59 106 -52 83 Q-44 52 -13 51 Q18 41 42 65 Q63 82 48 133 L42 110 Q26 103 18 85 Q-1 108 -33 111 L-29 104 Q-43 111 -49 133Z',dark);
  line('M-41 94 Q-27 76 -4 70 M25 68q13 7 18 18','#715953',2);
  if(['丸子','簪花','花冠','士冠','帝冠','布巾'].includes(hair)){oval(-1,55,18,16,dark,ink)}
@@ -288,99 +279,31 @@ function drawEmblem(key,g){
 
 const portraitStudio=(()=>{
  const by=id=>document.getElementById(id), art=by('characterArt');
- const file=by('faceFile'), editor=by('faceEditor'), message=by('portraitStatus'), overlay=by('exportOverlay');
- const preview=by('exportImage'), download=by('downloadCard');
- const sliders=['faceZoom','faceX','faceY'].map(by), [zoom,xPan,yPan]=sliders;
- let model=null, source=null, ticket=0, mode='original', frame=0, locked=false;
- function surface(w,h=w){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
- function cropFace(){
-  if(!source)return null;
-  const side=Math.min(source.width,source.height)/Number(zoom.value);
-  const x=(source.width-side)*(Number(xPan.value)+100)/200,y=(source.height-side)*(Number(yPan.value)+100)/200;
-  const chip=surface(240),ctx=chip.getContext('2d',{willReadFrequently:true});
-  ctx.fillStyle='#f4dbc3';ctx.fillRect(0,0,240,240);
-  ctx.drawImage(source,x,y,side,side,0,0,240,240);
-  if(mode==='styled')inkFace(ctx,model.spec);
-  return chip;
- }
- function inkFace(ctx,spec){
-  const {width:w,height:h}=ctx.canvas, pixels=ctx.getImageData(0,0,w,h), dst=pixels.data,src=new Uint8ClampedArray(dst);
-  const color=parseInt(spec[4],16),accent=[color>>16,(color>>8)&255,color&255];
-  const historical=['汉服','长衫','帝服','甲衣'].includes(spec[0]),night=spec[3]==='夜色';
-  const tones=historical?6:night?7:8,paper=historical?[255,237,207]:night?[230,226,244]:[255,239,225];
-  const luminance=i=>.299*src[i]+.587*src[i+1]+.114*src[i+2];
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-   const i=(y*w+x)*4,L=luminance(i);let total=2,r=src[i]*2,g=src[i+1]*2,b=src[i+2]*2;
-   // Edge-preserving smoothing keeps the subject's facial landmarks readable.
-   for(const [dx,dy] of [[-2,0],[2,0],[0,-2],[0,2]]){
-    const n=(Math.max(0,Math.min(h-1,y+dy))*w+Math.max(0,Math.min(w-1,x+dx)))*4;
-    if(Math.abs(luminance(n)-L)<29){r+=src[n];g+=src[n+1];b+=src[n+2];total++}
-   }
-   r/=total;g/=total;b/=total;
-   const light=.299*r+.587*g+.114*b, band=Math.round(light/255*(tones-1))/(tones-1), tint=band<.5?accent:paper;
-   const right=i+(x<w-1?4:0),down=i+(y<h-1?w*4:0);
-   const edge=Math.min(.60,Math.max(0,(Math.abs(luminance(right)-L)+Math.abs(luminance(down)-L)-24)/100));
-   const tintAmount=historical?.30:.23;
-   [r,g,b].forEach((v,k)=>{const block=band*255+(v-light)*.72;dst[i+k]=(block*(1-tintAmount)+tint[k]*tintAmount)*(1-edge)+[54,48,58][k]*edge});
-   if(model.edition && model.edition.style!=='绢本设色'){
-    const bronze=model.edition.style==='铜版色调', shade=band*(1-edge);
-    const dark=bronze?[40,46,42]:[40,36,29],lightPaper=bronze?[192,195,177]:[249,242,221];
-    for(let k=0;k<3;k++)dst[i+k]=dark[k]+shade*(lightPaper[k]-dark[k]);
-   }
-  }
-  ctx.putImageData(pixels,0,0);
- }
+ const message=by('portraitStatus'), overlay=by('exportOverlay'), preview=by('exportImage'), download=by('downloadCard');
+ let model=null;
+ function surface(w,h){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
  function draw(){
-  frame=0;if(!model)return;
-  if(model.edition){
-   if(!model.edition.image.naturalWidth)return;
-   drawEdition(art,model,cropFace());
-  }else paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
-  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':model.edition?'，历史人物图版':'，专属卡通画像'));
+  if(!model)return;
+  if(model.edition)drawEdition(art,model);
+  else paintCharacter(art,model.spec);
+  art.setAttribute('aria-label',model.name+'，正面半身画像');
  }
- function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
- function setMode(value){mode=value;for(const el of editor.querySelectorAll('[data-face-mode]'))el.setAttribute('aria-pressed',String(el.dataset.faceMode===value));schedule()}
- function resetCrop(){zoom.value='1';xPan.value='0';yPan.value='0'}
  function closeExport(){overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');if(model)by('makeCard').focus({preventScroll:true})}
- function clear(){
-  ticket++;source=null;model=null;locked=false;file.value='';editor.hidden=true;message.textContent='';by('makeCard').disabled=false;overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');
-  if(frame)cancelAnimationFrame(frame);frame=0;
- }
+ function clear(){model=null;closeExport();message.textContent=''}
  function show(data){
-  clear();model=data;resetCrop();mode='original';
-  const ancient=['汉服','长衫','帝服','甲衣'].includes(data.spec[0]);
-  by('styledFace').textContent=ancient?'彩墨画风':data.spec[3]==='夜色'?'夜色版画':'绘本画风';
-  if(data.edition){
-   const edition=data.edition;
-   showCredit(edition);
-   by('styledFace').textContent=edition.style;
-   if(!edition.image.naturalWidth){
+  clear();model=data;
+  const plate=data.edition;
+  by('makeCard').disabled=false;
+  if(plate){
+   showCredit(plate);
+   if(!plate.image.naturalWidth){
     art.getContext('2d').clearRect(0,0,art.width,art.height);by('makeCard').disabled=true;
-    edition.ready.then(ok=>{if(model!==data)return;if(ok){by('makeCard').disabled=locked;draw()}else message.textContent='图版读取失败，请刷新重试。'});
+    plate.ready.then(ok=>{if(model!==data)return;if(ok){draw();by('makeCard').disabled=false}else message.textContent='图版读取失败，请刷新重试。'});
+    return;
    }
   }
   draw();
  }
- file.addEventListener('change',async()=>{
-  const f=file.files[0];if(!f||!model)return;
-  const seq=++ticket;locked=true;by('makeCard').disabled=true;message.textContent='正在读取头像…';
-  const url=URL.createObjectURL(f);
-  try{
-   const img=new Image();
-   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
-   if(seq!==ticket||!model)return;
-   const scale=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));
-   const resized=surface(Math.max(1,Math.round(img.naturalWidth*scale)),Math.max(1,Math.round(img.naturalHeight*scale)));
-   resized.getContext('2d').drawImage(img,0,0,resized.width,resized.height);
-   source=resized;resetCrop();editor.hidden=false;setMode('original');draw();
-   message.textContent='头像已放入画中，可调整取景位置。';
-  }catch{if(seq===ticket)message.textContent='这张图片未能读取，请选择相册中的 JPG、PNG 或 WebP 图片。'}
-  finally{URL.revokeObjectURL(url);if(seq===ticket){file.value='';locked=false;by('makeCard').disabled=false}}
- });
- for(const el of editor.querySelectorAll('[data-face-mode]'))el.onclick=()=>setMode(el.dataset.faceMode);
- sliders.forEach(el=>el.oninput=schedule);
- by('resetPortrait').onclick=()=>{ticket++;source=null;file.value='';editor.hidden=true;locked=false;by('makeCard').disabled=false;message.textContent='已恢复角色画像。';draw()};
- by('chooseFace').onclick=()=>file.click();
  function wrap(ctx,text,width){
   const lines=[];let row='';
   for(const ch of Array.from(text)){if(ch==='\n'){lines.push(row);row='';continue}
@@ -403,7 +326,7 @@ const portraitStudio=(()=>{
   if(model.edition){
    const e=model.edition;
    textBlock(e.title+' · '+e.by,22,32,sans,accent);
-   textBlock('图版局部裁切'+(source?'，合成自选头像':'')+' · '+e.license,20,29,sans,accent);
+   textBlock('AI 正面改绘 · 图源许可 ' + +e.license,20,29,sans,accent);
    textBlock(e.url,17,24,sans,accent);
    if(e.terms)textBlock(e.terms,17,24,sans,accent);
   }
@@ -416,7 +339,7 @@ const portraitStudio=(()=>{
   return card.toDataURL('image/png');
  }
  by('makeCard').onclick=()=>{
-  if(!model||locked||(model.edition&&!model.edition.image.naturalWidth))return;
+  if(!model||(model.edition&&!model.edition.image.naturalWidth))return;
   try{const uri=poster();preview.src=uri;preview.alt=model.name+'完整结果卡';download.href=uri;download.download='性情手册-'+model.name+'.png';
    overlay.hidden=false;by('closeExport').focus({preventScroll:true});}
   catch{message.textContent='长图生成失败，请重试或截屏保存。'}

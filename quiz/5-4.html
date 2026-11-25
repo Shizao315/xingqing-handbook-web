@@ -19,14 +19,9 @@
 <section id="quiz" class="sheet" hidden><div class="line"><span class="sectiontag" id="phase"></span><small id="counter"></small></div><progress class="track" id="progress" aria-label="已答题数" max="40"></progress><h2 id="prompt" tabindex="-1"></h2><div class="choices" id="choices"></div><div class="actions"><button class="quiet" id="back">← 上一题</button><button class="primary" id="next" disabled>下一题 →</button></div></section>
 <section hidden id="handoff" class="sheet"><span class="sectiontag">双人测试 · 换人作答</span><h2>轮到第二位了</h2><p>请把设备交给对方。接下来独立完成同样的 40 题，最后一起拆开报告。</p><button class="primary" id="take">我是第二位，开始作答 →</button></section>
 <section id="result" hidden><article class="card"><div class="sectiontag">你适合什么样的生活节奏</div><h2 id="resName" tabindex="-1"></h2><div id="portraitStudio" class="portrait-studio">
- <canvas id="characterArt" width="960" height="600" role="img" aria-label="专属卡通画像"></canvas>
- <div class="portrait-actions"><button type="button" id="chooseFace">换成我的头像</button><button type="button" id="makeCard">保存结果卡 ↓</button></div>
- <input type="file" id="faceFile" accept="image/*" hidden>
- <div id="faceEditor" hidden>
-  <div class="face-modes" role="group" aria-label="头像画风"><button type="button" data-face-mode="original" aria-pressed="true">头像原图</button><button type="button" data-face-mode="styled" id="styledFace" aria-pressed="false">绘本画风</button><button type="button" id="resetPortrait">恢复角色</button></div>
-  <div class="crop-controls"><label>缩放<input id="faceZoom" type="range" min="1" max="3.5" step=".05" value="1"></label><label>左右<input id="faceX" type="range" min="-100" max="100" value="0"></label><label>上下<input id="faceY" type="range" min="-100" max="100" value="0"></label></div>
- </div>
- <div class="portrait-note">相册图片仅在此设备上处理。<span id="portraitStatus" role="status"></span></div>
+ <canvas id="characterArt" width="960" height="600" role="img" aria-label="正面人物画像"></canvas>
+ <div class="portrait-actions"><button type="button" id="makeCard">保存结果卡 ↓</button></div>
+ <div id="portraitStatus" role="status"></div>
 </div>
 <h3 id="quote"></h3><div id="details"></div><div class="signature"><span>性情手册 · 情绪娱乐类</span><span>趣味结果签</span></div></article><div class="actions outside"><button id="restart" class="primary">重新测试 ↻</button></div></section></main><footer><span>性情手册 · 趣味测试集</span><span>仅供娱乐与自我观察</span></footer></div><script>const TEST={"title": "你适合什么样的生活节奏", "desc": "不用计算效率，看看哪种一天最能让你舒服地走到晚上。", "profiles": [["细水长流型", "匀速", "小步一直走，也会走过很长的季节。", "你能用可重复的习惯减少启动的压力。", "给普通星期三留个固定的小奖励。"], ["潮汐冲刺型", "冲刺", "涨潮时尽兴，退潮时安心靠岸。", "你能在目标清楚的窗口里集中力量。", "把休息也标在冲刺终点的日历上。"], ["呼吸留白型", "留白", "你需要的余地，本来就是日程的一部分。", "你能通过消化和休息恢复清晰的判断。", "你最珍贵的预约可能写着“暂时空着”。"], ["四季轮换型", "轮换", "换一阵风，你就有了新的步子。", "你能借活动差异维持新鲜感。", "给任务配几首不同的开场曲试试。"]], "questions": [{"text": "周一有份报告周五交，你想怎么安排？", "options": [{"label": "先空半天想清楚重点", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "留整块时间集中写完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "每天固定写一节", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "写作和访谈穿插着做", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "周末醒来没有急事，你先？", "options": [{"label": "趁精神好一口气办完杂事", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "照平常时间做早餐", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "先散步再回家做点手工", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "躺一会儿再想今天", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "长假想学一道新菜，你选哪种练法？", "options": [{"label": "每天练一小步", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "轮换切配、调味和摆盘", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "挑个从容下午慢慢试", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "一天连做几次直到成功", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "运动计划要坚持一个月，你写？", "options": [{"label": "跑步、瑜伽和球类交替", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "给每次运动前后留足休息", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每周安排一次集中训练", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "每天同一时间快走", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "复习一门课程，你的书桌怎么用？", "options": [{"label": "读书、画图、做题换着来", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "先把桌面留白，慢慢理笔记", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每天同一位置读固定页数", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "腾空半天集中刷题", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "家里要彻底收拾，你会？", "options": [{"label": "先腾出舒服的休息角", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每天整理一格", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "周六集中完成大扫除", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "清衣柜累了就换去整理书", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "朋友来住三天，你怎样排活动？", "options": [{"label": "每天固定早餐、出门、归家", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "挑一天把想去的地方走完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "交替看展、散步和做饭", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每天只约一件事，多留空档", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "想写一本旅行手帐，你更愿？", "options": [{"label": "最后一个下午一口气整理", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "文字、拼贴、照片轮流做", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "等感受沉下来再动笔", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每晚固定写一页", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "一天有四个会，你希望怎么排？", "options": [{"label": "会议之间留出缓冲", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "讨论会和独立工作交错", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "全部放在同一段开完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "每次时间相同，间隔固定", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "跑完一个大项目，你怎样进入下一项？", "options": [{"label": "换个不同性质的任务启动", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "完整休息后再开一轮冲刺", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "恢复原本每日的小步推进", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "先给自己留几天消化", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "新书有四百页，你打算？", "options": [{"label": "周末留整天沉浸读完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "每天读固定页数", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "把书放在窗边，有余裕再读", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "和另一本轻松读物交换着看", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "约朋友定期见面，你会提议？", "options": [{"label": "每周同一天吃晚饭", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "彼此都有余裕再见", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "这次散步下次看展", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "攒到假期一起玩两天", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "搬家要整理十个箱子，你喜欢？", "options": [{"label": "提前腾出空白天慢慢整", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "一个晚上集中装箱", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "书装累了就换衣服或厨具", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每天打包两个", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "早晨可自由支配半小时，你会？", "options": [{"label": "专心解决今天最难的小事", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "伸展、听歌、读几页书", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "照习惯读半小时书", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "坐着喝茶慢慢醒神", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "参加一个月摄影挑战，你怎样提交作品？", "options": [{"label": "隔天换人像、风景和静物", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每天拍一张", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "等光线和心情合适再拍", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "集中出街拍一整组", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "要准备三餐，你更喜欢？", "options": [{"label": "每天按固定时间做简单饭", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "留足吃饭时间慢慢做一道", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "一次备齐好几顿", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "今早煮、午间烤、晚餐凉拌换口感", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "周末想去逛城，你怎样走？", "options": [{"label": "沿熟路线慢跑到常去点", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "逛街、坐船、看展混合安排", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "列好清单一次逛够", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "只定一个落脚处，其余随意", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "学吉他第一首歌，你怎么练？", "options": [{"label": "和弦、听音、跟唱交替", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "挑一天把整首反复攻下来", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "先听熟再找轻松时段试", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每天练十五分钟", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "临时提前下班一小时，你拿它来？", "options": [{"label": "集中办掉积压的电话", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "坐下来单纯享受额外时间", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "按原计划把晚上事项前移", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "换条路散步再买菜回家", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "要给阳台种花，你打算？", "options": [{"label": "只种几盆让照料不赶", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每天固定时候照看", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "花和香草分着轮流打理", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "周末集中翻土换盆", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "例会突然取消，你会？", "options": [{"label": "抓住空档专攻最难问题", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "留一会儿空白整理思路", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "从屏幕工作换成动手整理", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "继续做原本下一项例行事", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "备考时遇到一章很难的内容，你会？", "options": [{"label": "放一放，头脑清楚再回看", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "题目、讲解和动手示范轮流切换", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每天固定解两题", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "留一个整晚集中攻克", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "两天内要发十份邀请，你倾向？", "options": [{"label": "打电话、写卡片、发消息换着做", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每天发五份", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "集中写好一次发完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "提前留宽裕时间慢慢措辞", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "制定睡前仪式，你选？", "options": [{"label": "每天按同一步骤洗漱读书", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "早早做完杂事一口气放松", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "关掉提醒留一段安静", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "轮换读诗、听歌和拉伸", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "有三门都喜欢的兴趣课，你怎样上？", "options": [{"label": "不同星期轮流体验", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "选假期集训营", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "只选一门且不排满周末", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "固定每周一次主课", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "长途旅行中转四小时，你会？", "options": [{"label": "集中游览机场里想看的展区", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "找个安静座位休息", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "按饭点吃饭再按惯例读书", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "逛店、走路、坐下画画换着来", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "家里囤了好多没看的电影，你打算？", "options": [{"label": "等一个完全空的晚上好好看", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每周固定看一部", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "长片、短片和纪录片交替", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "办个周末电影马拉松", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "工作中注意力开始下降，你会？", "options": [{"label": "按固定钟点短休", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "换成能站起来做的任务", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "趁还剩点力气收完当前阶段再歇", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "停一下，等思绪恢复清楚", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "跑团希望你推荐练习节奏，你选？", "options": [{"label": "每周一次明确的计时挑战", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "每天同一时段稳定慢跑", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "交替做爬坡、平路和伸展", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "跑走之间留充足恢复", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "做一本相册需要选很多照片，你会？", "options": [{"label": "每天选十张", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "选一阵照片就换去配文字", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "挑心情平静的下午慢慢看", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "一晚集中筛完所有照片", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "参加线上课程，你怎样安排回放？", "options": [{"label": "听完一段就切到动手练习", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "清空一个上午专心听一讲", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "全集出来后集中攻完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "按每周固定时段跟课", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "周日晚上整理下周日历，你先填？", "options": [{"label": "故意保留下来的空白格", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "几个可以连续深入的时间块", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "每天稳定不动的作息点", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "不同类型事务的轮换次序", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "周末菜市场买太多水果，你想怎样处理？", "options": [{"label": "搭配做沙拉、果汁和甜点", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "今天一口气做成果酱", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "坐下来慢慢挑出熟透的先吃", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "每天照例切一盒", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "朋友来城里玩只有一天，你想？", "options": [{"label": "集中打卡几个重点", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "挑一处舒服地方尽情待", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "沿日常路线带他看真实生活", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "安排街区、展馆与公园交替", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "连续忙了几天，明天可以自主安排，你会？", "options": [{"label": "不设任务留出整段恢复期", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "回到规律吃饭和运动", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "换成不碰屏幕的活动", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "先清掉最后几项再彻底休息", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "想培养拍照的习惯，你会设什么提醒？", "options": [{"label": "每天同一时间提醒一次", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "按不同主题轮流弹出任务", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每周留一个集中外拍日", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "只在空闲周末提醒", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}, {"text": "节日前要寄出一叠贺卡，你怎么写？", "options": [{"label": "写几张再换成画插图", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每晚写几张", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "提前开工留足时间慢慢挑词", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "泡杯咖啡一个下午写完", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}]}, {"text": "换个工作地点一天，你想要？", "options": [{"label": "能保持原有作息的固定工位", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "能随时走走并放空的庭院", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "不受打扰的专注包间", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "有桌面、白板和休息区可切换的空间", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}]}, {"text": "学习手冲时要调整参数，你打算？", "options": [{"label": "给自己足够时间慢慢品尝", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}, {"label": "一上午连冲几杯做比较", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "调研磨、闻香、配甜点穿插着试", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "每天固定时段只改一点", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}]}, {"text": "假期最后一天你怎么收尾最舒服？", "options": [{"label": "集中完成最后一项心愿", "points": {"匀速": 0, "冲刺": 2, "留白": 0, "轮换": 0}}, {"label": "做饭、散步、整理纪念品轮流来", "points": {"匀速": 0, "冲刺": 0, "留白": 0, "轮换": 2}}, {"label": "按平时的起居时间过", "points": {"匀速": 2, "冲刺": 0, "留白": 0, "轮换": 0}}, {"label": "留一整段不必出门的时间", "points": {"匀速": 0, "冲刺": 0, "留白": 2, "轮换": 0}}]}], "axes": ["匀速", "冲刺", "留白", "轮换"], "mode": "分型"};</script><script>const Q=TEST.questions, dims=TEST.axes, isPair=TEST.title==='情侣适配度测试';
 const $=s=>document.getElementById(s);
@@ -153,7 +148,7 @@ document.querySelectorAll('canvas[data-plate]').forEach(cv=>new ResizeObserver((
  <a id="downloadCard" download>下载 PNG 图片 ↓</a></div>
 </div>
 <script>const portraitSpecs={"细水长流型": ["针织", "短发", "水杯", "水岸", "6a9393"], "潮汐冲刺型": ["夹克", "头带", "船", "水岸", "508eaa"], "呼吸留白型": ["长衫", "丸子", "叶", "群山", "92a086"], "四季轮换型": ["条纹", "草帽", "风筝", "田园", "ba8961"]};
-function paintCharacter(canvas,spec,face,look){
+function paintCharacter(canvas,spec){
  const [outfit,hair,prop,scene,hex]=spec,coat='#'+hex;
  const W=480,H=300,ink='#382f37',cream='#fff2d4',gold='#e7b75c',skin='#f4c7a3',blush='#de9d8d';
  const c=canvas.getContext('2d');c.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);c.lineJoin='round';c.lineCap='round';
@@ -196,18 +191,14 @@ function paintCharacter(canvas,spec,face,look){
  line('M-76 223 Q-66 239 -65 260 M83 229 Q70 246 68 267',ink,1.6);
  const head='M-50 115 Q-53 77 -21 63 Q14 48 41 74 Q56 90 49 130 Q45 157 25 173 Q12 185 -4 182 Q-32 178 -45 153 Q-51 142 -50 115Z';
  oval(-49,131,9,13,skin,ink);oval(49,130,9,13,skin,ink);path(head,skin);
- if(face){
-  c.save();c.clip(new Path2D(head));const zoom=look.zoom, size=136*zoom;
-  c.drawImage(face,-size/2+look.x,-size/2+121+look.y,size,size);c.restore();line(head,ink,2.3);
- }else{
+
   oval(-30,145,9,4,blush);oval(30,145,9,4,blush);
   const calm=['书','叶','羽扇','茶','花','卷'].includes(prop);
   line('M-33 118q9 -6 17 -2 M14 116q9 -5 16 -1',ink,2.9);
   if(calm){line('M-31 132q7 -6 14 -1 M15 131q7 -6 14 0',ink,2.6)}else{oval(-23,131,3.2,5,ink);oval(21,130,3.2,5,ink);oval(-22,129,1,1,cream);oval(22,128,1,1,cream)}
   line('M0 133l-3 9 5 1','#aa7165',1.7);line('M-9 155q11 7 21 -2','#985a55',2.1);
   if(['纶巾','帝冠','将盔'].includes(hair)){path('M-18 153q10 2 15 -3l3 2q6 -3 14 0l5 5q-12 -4 -18 -2q-10 -2 -19 1Z',dark,null);path('M-10 174q11 5 22 -1q-2 13 -9 17q-8 -5 -13 -16Z',dark)}
- }
- // Hair and hats overlay the forehead, including when a photo is inserted.
+  // Hair and hats overlay the forehead, including when a photo is inserted.
  path('M-49 133 Q-59 106 -52 83 Q-44 52 -13 51 Q18 41 42 65 Q63 82 48 133 L42 110 Q26 103 18 85 Q-1 108 -33 111 L-29 104 Q-43 111 -49 133Z',dark);
  line('M-41 94 Q-27 76 -4 70 M25 68q13 7 18 18','#715953',2);
  if(['丸子','簪花','花冠','士冠','帝冠','布巾'].includes(hair)){oval(-1,55,18,16,dark,ink)}
@@ -288,99 +279,31 @@ function drawEmblem(key,g){
 
 const portraitStudio=(()=>{
  const by=id=>document.getElementById(id), art=by('characterArt');
- const file=by('faceFile'), editor=by('faceEditor'), message=by('portraitStatus'), overlay=by('exportOverlay');
- const preview=by('exportImage'), download=by('downloadCard');
- const sliders=['faceZoom','faceX','faceY'].map(by), [zoom,xPan,yPan]=sliders;
- let model=null, source=null, ticket=0, mode='original', frame=0, locked=false;
- function surface(w,h=w){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
- function cropFace(){
-  if(!source)return null;
-  const side=Math.min(source.width,source.height)/Number(zoom.value);
-  const x=(source.width-side)*(Number(xPan.value)+100)/200,y=(source.height-side)*(Number(yPan.value)+100)/200;
-  const chip=surface(240),ctx=chip.getContext('2d',{willReadFrequently:true});
-  ctx.fillStyle='#f4dbc3';ctx.fillRect(0,0,240,240);
-  ctx.drawImage(source,x,y,side,side,0,0,240,240);
-  if(mode==='styled')inkFace(ctx,model.spec);
-  return chip;
- }
- function inkFace(ctx,spec){
-  const {width:w,height:h}=ctx.canvas, pixels=ctx.getImageData(0,0,w,h), dst=pixels.data,src=new Uint8ClampedArray(dst);
-  const color=parseInt(spec[4],16),accent=[color>>16,(color>>8)&255,color&255];
-  const historical=['汉服','长衫','帝服','甲衣'].includes(spec[0]),night=spec[3]==='夜色';
-  const tones=historical?6:night?7:8,paper=historical?[255,237,207]:night?[230,226,244]:[255,239,225];
-  const luminance=i=>.299*src[i]+.587*src[i+1]+.114*src[i+2];
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-   const i=(y*w+x)*4,L=luminance(i);let total=2,r=src[i]*2,g=src[i+1]*2,b=src[i+2]*2;
-   // Edge-preserving smoothing keeps the subject's facial landmarks readable.
-   for(const [dx,dy] of [[-2,0],[2,0],[0,-2],[0,2]]){
-    const n=(Math.max(0,Math.min(h-1,y+dy))*w+Math.max(0,Math.min(w-1,x+dx)))*4;
-    if(Math.abs(luminance(n)-L)<29){r+=src[n];g+=src[n+1];b+=src[n+2];total++}
-   }
-   r/=total;g/=total;b/=total;
-   const light=.299*r+.587*g+.114*b, band=Math.round(light/255*(tones-1))/(tones-1), tint=band<.5?accent:paper;
-   const right=i+(x<w-1?4:0),down=i+(y<h-1?w*4:0);
-   const edge=Math.min(.60,Math.max(0,(Math.abs(luminance(right)-L)+Math.abs(luminance(down)-L)-24)/100));
-   const tintAmount=historical?.30:.23;
-   [r,g,b].forEach((v,k)=>{const block=band*255+(v-light)*.72;dst[i+k]=(block*(1-tintAmount)+tint[k]*tintAmount)*(1-edge)+[54,48,58][k]*edge});
-   if(model.edition && model.edition.style!=='绢本设色'){
-    const bronze=model.edition.style==='铜版色调', shade=band*(1-edge);
-    const dark=bronze?[40,46,42]:[40,36,29],lightPaper=bronze?[192,195,177]:[249,242,221];
-    for(let k=0;k<3;k++)dst[i+k]=dark[k]+shade*(lightPaper[k]-dark[k]);
-   }
-  }
-  ctx.putImageData(pixels,0,0);
- }
+ const message=by('portraitStatus'), overlay=by('exportOverlay'), preview=by('exportImage'), download=by('downloadCard');
+ let model=null;
+ function surface(w,h){const el=document.createElement('canvas');el.width=w;el.height=h;return el}
  function draw(){
-  frame=0;if(!model)return;
-  if(model.edition){
-   if(!model.edition.image.naturalWidth)return;
-   drawEdition(art,model,cropFace());
-  }else paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
-  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':model.edition?'，历史人物图版':'，专属卡通画像'));
+  if(!model)return;
+  if(model.edition)drawEdition(art,model);
+  else paintCharacter(art,model.spec);
+  art.setAttribute('aria-label',model.name+'，正面半身画像');
  }
- function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
- function setMode(value){mode=value;for(const el of editor.querySelectorAll('[data-face-mode]'))el.setAttribute('aria-pressed',String(el.dataset.faceMode===value));schedule()}
- function resetCrop(){zoom.value='1';xPan.value='0';yPan.value='0'}
  function closeExport(){overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');if(model)by('makeCard').focus({preventScroll:true})}
- function clear(){
-  ticket++;source=null;model=null;locked=false;file.value='';editor.hidden=true;message.textContent='';by('makeCard').disabled=false;overlay.hidden=true;preview.removeAttribute('src');download.removeAttribute('href');
-  if(frame)cancelAnimationFrame(frame);frame=0;
- }
+ function clear(){model=null;closeExport();message.textContent=''}
  function show(data){
-  clear();model=data;resetCrop();mode='original';
-  const ancient=['汉服','长衫','帝服','甲衣'].includes(data.spec[0]);
-  by('styledFace').textContent=ancient?'彩墨画风':data.spec[3]==='夜色'?'夜色版画':'绘本画风';
-  if(data.edition){
-   const edition=data.edition;
-   showCredit(edition);
-   by('styledFace').textContent=edition.style;
-   if(!edition.image.naturalWidth){
+  clear();model=data;
+  const plate=data.edition;
+  by('makeCard').disabled=false;
+  if(plate){
+   showCredit(plate);
+   if(!plate.image.naturalWidth){
     art.getContext('2d').clearRect(0,0,art.width,art.height);by('makeCard').disabled=true;
-    edition.ready.then(ok=>{if(model!==data)return;if(ok){by('makeCard').disabled=locked;draw()}else message.textContent='图版读取失败，请刷新重试。'});
+    plate.ready.then(ok=>{if(model!==data)return;if(ok){draw();by('makeCard').disabled=false}else message.textContent='图版读取失败，请刷新重试。'});
+    return;
    }
   }
   draw();
  }
- file.addEventListener('change',async()=>{
-  const f=file.files[0];if(!f||!model)return;
-  const seq=++ticket;locked=true;by('makeCard').disabled=true;message.textContent='正在读取头像…';
-  const url=URL.createObjectURL(f);
-  try{
-   const img=new Image();
-   await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url});
-   if(seq!==ticket||!model)return;
-   const scale=Math.min(1,1200/Math.max(img.naturalWidth,img.naturalHeight));
-   const resized=surface(Math.max(1,Math.round(img.naturalWidth*scale)),Math.max(1,Math.round(img.naturalHeight*scale)));
-   resized.getContext('2d').drawImage(img,0,0,resized.width,resized.height);
-   source=resized;resetCrop();editor.hidden=false;setMode('original');draw();
-   message.textContent='头像已放入画中，可调整取景位置。';
-  }catch{if(seq===ticket)message.textContent='这张图片未能读取，请选择相册中的 JPG、PNG 或 WebP 图片。'}
-  finally{URL.revokeObjectURL(url);if(seq===ticket){file.value='';locked=false;by('makeCard').disabled=false}}
- });
- for(const el of editor.querySelectorAll('[data-face-mode]'))el.onclick=()=>setMode(el.dataset.faceMode);
- sliders.forEach(el=>el.oninput=schedule);
- by('resetPortrait').onclick=()=>{ticket++;source=null;file.value='';editor.hidden=true;locked=false;by('makeCard').disabled=false;message.textContent='已恢复角色画像。';draw()};
- by('chooseFace').onclick=()=>file.click();
  function wrap(ctx,text,width){
   const lines=[];let row='';
   for(const ch of Array.from(text)){if(ch==='\n'){lines.push(row);row='';continue}
@@ -403,7 +326,7 @@ const portraitStudio=(()=>{
   if(model.edition){
    const e=model.edition;
    textBlock(e.title+' · '+e.by,22,32,sans,accent);
-   textBlock('图版局部裁切'+(source?'，合成自选头像':'')+' · '+e.license,20,29,sans,accent);
+   textBlock('AI 正面改绘 · 图源许可 ' + +e.license,20,29,sans,accent);
    textBlock(e.url,17,24,sans,accent);
    if(e.terms)textBlock(e.terms,17,24,sans,accent);
   }
@@ -416,7 +339,7 @@ const portraitStudio=(()=>{
   return card.toDataURL('image/png');
  }
  by('makeCard').onclick=()=>{
-  if(!model||locked||(model.edition&&!model.edition.image.naturalWidth))return;
+  if(!model||(model.edition&&!model.edition.image.naturalWidth))return;
   try{const uri=poster();preview.src=uri;preview.alt=model.name+'完整结果卡';download.href=uri;download.download='性情手册-'+model.name+'.png';
    overlay.hidden=false;by('closeExport').focus({preventScroll:true});}
   catch{message.textContent='长图生成失败，请重试或截屏保存。'}
