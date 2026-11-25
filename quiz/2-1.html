@@ -157,21 +157,26 @@ function render(){
  $('count').textContent=String(at+1).padStart(2,'0')+' / '+n;
  $('progress').max=n;$('progress').value=answers.filter(Number.isInteger).length;
  $('question').textContent=q[1];$('options').replaceChildren();
+ const reviewing=Number.isInteger(answers[at]);
  order.forEach((choice,i)=>{
   const btn=document.createElement('button');btn.className='option';btn.type='button';
   const letter=document.createElement('span');letter.textContent='ABCD'[i];letter.setAttribute('aria-hidden','true');
   btn.append(letter,document.createTextNode(q[choice+2]));btn.setAttribute('aria-pressed',String(answers[at]===choice));
-  btn.onclick=()=>{answers[at]=choice;for(const item of $('options').children)item.setAttribute('aria-pressed',String(item===btn));$('next').disabled=false;$('progress').value=answers.filter(Number.isInteger).length};
+  btn.onclick=()=>{
+   answers[at]=choice;
+   if(!reviewing){advance();return}
+   for(const item of $('options').children)item.setAttribute('aria-pressed',String(item===btn));
+  };
   $('options').append(btn);
  });
- $('next').disabled=!Number.isInteger(answers[at]);$('prev').disabled=at===0;
+ $('next').hidden=!reviewing;$('next').disabled=!reviewing;$('prev').disabled=at===0;
  $('next').textContent=at===n-1?'揭晓我的人物 →':'下一题 →';
  $('question').focus({preventScroll:true});window.scrollTo(0,0);animate($('options'));
 }
 function begin(){answers=[];at=0;page('quiz');render()}
 $('start').onclick=begin;$('restart').onclick=begin;
 $('prev').onclick=()=>{if(at>0){at--;render()}};
-$('next').onclick=()=>{
+function advance(){
  if(!Number.isInteger(answers[at]))return;
  if(at<BOOK.questions.length-1){at++;render();return}
  const {key}=match(answers),profile=BOOK.profiles[key];
@@ -179,7 +184,8 @@ $('next').onclick=()=>{
  page('result');$('name').focus({preventScroll:true});animate($('result'));
  if(typeof portraitStudio!=='undefined')portraitStudio.show({name:profile[0],title:BOOK.title,quote:profile[2],spec:portraitSpecs[profile[0]],edition:editions[profile[0]],
   sections:()=>[['身份与性格',profile[1]+' · '+profile[3]],['匹配理由',profile[4]],['隐藏优势',profile[5]],['趣味彩蛋',profile[6]]]});
-};
+}
+$('next').onclick=advance;
 </script><div id="exportOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="exportTitle">
  <div class="poster-dialog"><div class="poster-bar"><strong id="exportTitle">保存结果卡</strong><button id="closeExport" type="button">关闭</button></div>
  <p>手机微信可长按下图保存；电脑可下载 PNG。</p>

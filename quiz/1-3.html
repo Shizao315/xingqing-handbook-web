@@ -59,8 +59,20 @@ function render(){
  $('counter').textContent=String(pos+1).padStart(2,'0')+' / '+Q.length;
  $('progress').max=Q.length;$('progress').value=answers.filter(Number.isInteger).length;
  $('prompt').textContent=current.text;$('choices').replaceChildren();
- current.options.forEach(({label},i)=>{const btn=document.createElement('button'),letter=document.createElement('span');btn.className='choice';letter.textContent='ABCD'[i];letter.setAttribute('aria-hidden','true');btn.append(letter,document.createTextNode(label));btn.setAttribute('aria-pressed',String(answers[pos]===i));btn.onclick=()=>{answers[pos]=i;for(const el of $('choices').children)el.setAttribute('aria-pressed',String(el===btn));$('next').disabled=false;$('progress').value=answers.filter(Number.isInteger).length};$('choices').append(btn)});
- $('back').disabled=pos===0;$('next').disabled=!Number.isInteger(answers[pos]);$('next').textContent=pos<39?'下一题 →':isPair&&!first?'完成并交接 →':'揭晓结果 →';
+ const reviewing=Number.isInteger(answers[pos]);
+ current.options.forEach(({label},i)=>{
+  const btn=document.createElement('button'),letter=document.createElement('span');
+  btn.className='choice';letter.textContent='ABCD'[i];letter.setAttribute('aria-hidden','true');
+  btn.append(letter,document.createTextNode(label));btn.setAttribute('aria-pressed',String(answers[pos]===i));
+  btn.onclick=()=>{
+   answers[pos]=i;
+   if(!reviewing){advance();return}
+   for(const el of $('choices').children)el.setAttribute('aria-pressed',String(el===btn));
+  };
+  $('choices').append(btn);
+ });
+ $('back').disabled=pos===0;$('next').hidden=!reviewing;$('next').disabled=!reviewing;
+ $('next').textContent=pos<Q.length-1?'下一题 →':isPair&&!first?'完成并交接 →':'揭晓结果 →';
  $('prompt').focus({preventScroll:true});window.scrollTo(0,0);motion($('choices'));
 }
 function detail(title,body){const box=document.createElement('section'),h=document.createElement('h4'),p=document.createElement('p');box.className='detail';h.textContent=title;p.textContent=body;box.append(h,p);$('details').append(box);return box}
@@ -99,7 +111,13 @@ function result(){
    [el.querySelector('p').textContent,...Array.from(el.querySelectorAll('.pairrow'),row=>Array.from(row.children,s=>s.textContent).join('　'))].join('\n')])});
 }
 $('start').onclick=start;$('restart').onclick=start;$('back').onclick=()=>{if(pos){pos--;render()}};
-$('next').onclick=()=>{if(!Number.isInteger(answers[pos]))return;if(pos<Q.length-1){pos++;render()}else if(isPair&&!first){first=score(answers);answers=[];pos=0;page('handoff');$('take').focus()}else result()};
+function advance(){
+ if(!Number.isInteger(answers[pos]))return;
+ if(pos<Q.length-1){pos++;render()}
+ else if(isPair&&!first){first=score(answers);answers=[];pos=0;page('handoff');$('take').focus()}
+ else result();
+}
+$('next').onclick=advance;
 $('take').onclick=()=>{page('quiz');render()};
 </script><script>function drawPlate(cv){
  const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
@@ -304,13 +322,21 @@ const portraitStudio=(()=>{
    const edge=Math.min(.60,Math.max(0,(Math.abs(luminance(right)-L)+Math.abs(luminance(down)-L)-24)/100));
    const tintAmount=historical?.30:.23;
    [r,g,b].forEach((v,k)=>{const block=band*255+(v-light)*.72;dst[i+k]=(block*(1-tintAmount)+tint[k]*tintAmount)*(1-edge)+[54,48,58][k]*edge});
+   if(model.edition && model.edition.style!=='绢本设色'){
+    const bronze=model.edition.style==='铜版色调', shade=band*(1-edge);
+    const dark=bronze?[40,46,42]:[40,36,29],lightPaper=bronze?[192,195,177]:[249,242,221];
+    for(let k=0;k<3;k++)dst[i+k]=dark[k]+shade*(lightPaper[k]-dark[k]);
+   }
   }
   ctx.putImageData(pixels,0,0);
  }
  function draw(){
   frame=0;if(!model)return;
-  paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
-  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':'，专属卡通画像'));
+  if(model.edition){
+   if(!model.edition.image.naturalWidth)return;
+   drawEdition(art,model,cropFace());
+  }else paintCharacter(art,model.spec,cropFace(),{zoom:1,x:0,y:0});
+  art.setAttribute('aria-label',model.name+(source?'，使用自选头像':model.edition?'，历史人物图版':'，专属卡通画像'));
  }
  function schedule(){if(!frame)frame=requestAnimationFrame(draw)}
  function setMode(value){mode=value;for(const el of editor.querySelectorAll('[data-face-mode]'))el.setAttribute('aria-pressed',String(el.dataset.faceMode===value));schedule()}
@@ -324,6 +350,15 @@ const portraitStudio=(()=>{
   clear();model=data;resetCrop();mode='original';
   const ancient=['汉服','长衫','帝服','甲衣'].includes(data.spec[0]);
   by('styledFace').textContent=ancient?'彩墨画风':data.spec[3]==='夜色'?'夜色版画':'绘本画风';
+  if(data.edition){
+   const edition=data.edition;
+   showCredit(edition);
+   by('styledFace').textContent=edition.style;
+   if(!edition.image.naturalWidth){
+    art.getContext('2d').clearRect(0,0,art.width,art.height);by('makeCard').disabled=true;
+    edition.ready.then(ok=>{if(model!==data)return;if(ok){by('makeCard').disabled=locked;draw()}else message.textContent='图版读取失败，请刷新重试。'});
+   }
+  }
   draw();
  }
  file.addEventListener('change',async()=>{
@@ -365,6 +400,13 @@ const portraitStudio=(()=>{
   for(const [label,content] of model.sections()){
    if(!content)continue;runs.push({type:'rule',y});y+=18;textBlock(label,28,42,serif,ink,true);textBlock(content,26,40,sans,ink);y+=19;
   }
+  if(model.edition){
+   const e=model.edition;
+   textBlock(e.title+' · '+e.by,22,32,sans,accent);
+   textBlock('图版局部裁切'+(source?'，合成自选头像':'')+' · '+e.license,20,29,sans,accent);
+   textBlock(e.url,17,24,sans,accent);
+   if(e.terms)textBlock(e.terms,17,24,sans,accent);
+  }
   y+=4;textBlock('性情手册 · 趣味结果签',22,32,sans,accent);
   const card=surface(w,Math.ceil(y+30)),p=card.getContext('2d');
   p.fillStyle='#faf5e8';p.fillRect(0,0,w,card.height);p.fillStyle=color;p.fillRect(0,0,w,10);p.textBaseline='top';
@@ -374,7 +416,7 @@ const portraitStudio=(()=>{
   return card.toDataURL('image/png');
  }
  by('makeCard').onclick=()=>{
-  if(!model||locked)return;
+  if(!model||locked||(model.edition&&!model.edition.image.naturalWidth))return;
   try{const uri=poster();preview.src=uri;preview.alt=model.name+'完整结果卡';download.href=uri;download.download='性情手册-'+model.name+'.png';
    overlay.hidden=false;by('closeExport').focus({preventScroll:true});}
   catch{message.textContent='长图生成失败，请重试或截屏保存。'}
