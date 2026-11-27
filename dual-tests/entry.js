@@ -25,12 +25,12 @@ async function openTest(k){
   if(!response.ok)throw Error();
   const html=await unseal(decode64(allKeys()[k]),new Uint8Array(await response.arrayBuffer()));
   if(seq!==openSeq)return;
-  by('frame').srcdoc=html;by('reader').hidden=false;by('back').focus();history.pushState({test:k},'','#'+k);
+  by('frame').srcdoc=html;by('reader').hidden=false;by('back').focus();
  }catch{if(seq===openSeq)by('status').textContent='测试读取失败，请重新打开入口再试。'}
 }
 function closeReader(){openSeq++;by('reader').hidden=true;by('frame').removeAttribute('srcdoc');by('library').scrollIntoView()}
 window.addEventListener('popstate',()=>{if(!by('reader').hidden)closeReader()});
-by('back').onclick=()=>{if(history.state?.test)history.back();else closeReader()};
+by('back').onclick=closeReader;
 async function start(){
  const r=await fetch('settings.json',{cache:'no-store'});if(!r.ok)throw Error();
  settings=await r.json();
