@@ -9,13 +9,7 @@ async function unseal(key,data){
  const aes=await crypto.subtle.importKey('raw',key,'AES-GCM',false,['decrypt']);
  return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:data.slice(0,12)},aes,data.slice(12)));
 }
-function allKeys(){
- const keys=Object.assign({},...Object.values(grants).map(g=>g.keys));
- for(const [extra,base] of Object.entries(settings.includedWith||{})){
-  if(keys[base])keys[extra]=keys[base];
- }
- return keys;
-}
+function allKeys(){return Object.assign({},...Object.values(grants).map(g=>g.keys))}
 function library(){
  const list=by('list');list.replaceChildren();
  for(const k of Object.keys(allKeys())){
@@ -64,7 +58,7 @@ by('form').onsubmit=async e=>{
   const grant=JSON.parse(await unseal(await hash('open:'+code),bytes));
   grants[grant.sku]=grant;by('code').value='';by('status').textContent='已解锁「'+grant.title+'」。';remember();library();
   const ids=Object.keys(grant.keys);
-  if(preferred&&allKeys()[preferred])await openTest(preferred);else if(ids.length===1)await openTest(ids[0]);else by('library').scrollIntoView({behavior:'smooth'});
+  if(preferred&&grant.keys[preferred])await openTest(preferred);else if(ids.length===1)await openTest(ids[0]);else by('library').scrollIntoView({behavior:'smooth'});
  }catch(err){by('status').textContent=err.message?.startsWith('兑换码')?err.message:'兑换未完成，请检查网络并重试。'}
  finally{by('submit').disabled=false}
 };
